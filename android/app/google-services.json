@@ -1,0 +1,98 @@
+{
+  "project_info": {
+    "project_number": "890542118180",
+    "firebase_url": "https://buy-master-multi-vendor-default-rtdb.firebaseio.com",
+    "project_id": "buy-master-multi-vendor",
+    "storage_bucket": "buy-master-multi-vendor.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:890542118180:android:4db6280681100d922ccfb1",
+        "android_client_info": {
+          "package_name": "com.jellysoft.buymaster"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "890542118180-57fa00s2cefeq5m2cpdrj0p49qkv4aij.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDqVfU1haQephkEAB_THEeKIjqKD4nP45E"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "890542118180-57fa00s2cefeq5m2cpdrj0p49qkv4aij.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:890542118180:android:c34a77519b5533bf2ccfb1",
+        "android_client_info": {
+          "package_name": "com.jellysoft.buymaster_delivery"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "890542118180-57fa00s2cefeq5m2cpdrj0p49qkv4aij.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDqVfU1haQephkEAB_THEeKIjqKD4nP45E"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "890542118180-57fa00s2cefeq5m2cpdrj0p49qkv4aij.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:890542118180:android:2ca2a842484466c32ccfb1",
+        "android_client_info": {
+          "package_name": "com.jellysoft.buymaster_seller"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "890542118180-57fa00s2cefeq5m2cpdrj0p49qkv4aij.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDqVfU1haQephkEAB_THEeKIjqKD4nP45E"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "890542118180-57fa00s2cefeq5m2cpdrj0p49qkv4aij.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

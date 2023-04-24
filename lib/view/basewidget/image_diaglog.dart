@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_sixvalley_ecommerce/utill/dimensions.dart';
+import 'package:flutter_buymaster_user_app/utill/dimensions.dart';
 import 'package:photo_view/photo_view.dart';
 import 'package:cached_network_image/cached_network_image.dart';
-
 
 class ImageDialog extends StatelessWidget {
   final String imageUrl;
@@ -11,13 +10,12 @@ class ImageDialog extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Dialog(
-      
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(10.0))),
+      shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.all(Radius.circular(10.0))),
       child: SingleChildScrollView(
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-
             Align(
               alignment: Alignment.centerRight,
               child: IconButton(
@@ -25,22 +23,22 @@ class ImageDialog extends StatelessWidget {
                 onPressed: () => Navigator.of(context).pop(),
               ),
             ),
-
             Container(
-              height: MediaQuery.of(context).size.height-150,
+              height: MediaQuery.of(context).size.height - 150,
               width: MediaQuery.of(context).size.width,
-              margin: EdgeInsets.symmetric(horizontal: Dimensions.PADDING_SIZE_LARGE),
-              decoration: BoxDecoration(borderRadius: BorderRadius.circular(10), color: Theme.of(context).primaryColor.withOpacity(0.20)),
+              margin: EdgeInsets.symmetric(
+                  horizontal: Dimensions.PADDING_SIZE_LARGE),
+              decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(10),
+                  color: Theme.of(context).primaryColor.withOpacity(0.20)),
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(10),
                 child: PhotoView(
-                  imageProvider:
-                  CachedNetworkImageProvider(imageUrl),
+                  imageProvider: CachedNetworkImageProvider(imageUrl),
                 ),
               ),
             ),
             SizedBox(height: Dimensions.PADDING_SIZE_LARGE),
-
           ],
         ),
       ),

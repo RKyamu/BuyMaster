@@ -1,16 +1,13 @@
-
-import 'package:flutter_sixvalley_ecommerce/data/model/response/product_model.dart';
+import 'package:flutter_buymaster_user_app/data/model/response/product_model.dart';
 
 class FeaturedDealModel {
-
   Product product;
 
-  FeaturedDealModel(
-      {this.product});
+  FeaturedDealModel({this.product});
 
   FeaturedDealModel.fromJson(Map<String, dynamic> json) {
-
-    product = json['product'] != null ? new Product.fromJson(json['product']) : null;
+    product =
+        json['product'] != null ? new Product.fromJson(json['product']) : null;
   }
 
   Map<String, dynamic> toJson() {
@@ -22,5 +19,3 @@ class FeaturedDealModel {
     return data;
   }
 }
-
-

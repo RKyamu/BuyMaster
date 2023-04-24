@@ -1,16 +1,16 @@
 import 'package:flutter_downloader/flutter_downloader.dart';
-import 'package:flutter_sixvalley_ecommerce/data/model/body/order_place_model.dart';
-import 'package:flutter_sixvalley_ecommerce/data/model/response/base/api_response.dart';
-import 'package:flutter_sixvalley_ecommerce/data/model/response/base/error_response.dart';
-import 'package:flutter_sixvalley_ecommerce/data/model/response/cart_model.dart';
-import 'package:flutter_sixvalley_ecommerce/data/model/response/order_details.dart';
-import 'package:flutter_sixvalley_ecommerce/data/model/response/order_model.dart';
-import 'package:flutter_sixvalley_ecommerce/data/model/response/refund_info_model.dart';
-import 'package:flutter_sixvalley_ecommerce/data/model/response/refund_result_model.dart';
-import 'package:flutter_sixvalley_ecommerce/data/model/response/shipping_method_model.dart';
-import 'package:flutter_sixvalley_ecommerce/data/repository/order_repo.dart';
-import 'package:flutter_sixvalley_ecommerce/helper/api_checker.dart';
-import 'package:flutter_sixvalley_ecommerce/utill/app_constants.dart';
+import 'package:flutter_buymaster_user_app/data/model/body/order_place_model.dart';
+import 'package:flutter_buymaster_user_app/data/model/response/base/api_response.dart';
+import 'package:flutter_buymaster_user_app/data/model/response/base/error_response.dart';
+import 'package:flutter_buymaster_user_app/data/model/response/cart_model.dart';
+import 'package:flutter_buymaster_user_app/data/model/response/order_details.dart';
+import 'package:flutter_buymaster_user_app/data/model/response/order_model.dart';
+import 'package:flutter_buymaster_user_app/data/model/response/refund_info_model.dart';
+import 'package:flutter_buymaster_user_app/data/model/response/refund_result_model.dart';
+import 'package:flutter_buymaster_user_app/data/model/response/shipping_method_model.dart';
+import 'package:flutter_buymaster_user_app/data/repository/order_repo.dart';
+import 'package:flutter_buymaster_user_app/helper/api_checker.dart';
+import 'package:flutter_buymaster_user_app/utill/app_constants.dart';
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
@@ -97,7 +97,7 @@ class OrderProvider with ChangeNotifier {
   List<OrderDetailsModel> _orderDetails;
   List<OrderDetailsModel> get orderDetails => _orderDetails;
 
-  Future<void> setOrderDetails() {
+  Future<void> setOrderDetails() async {
     _orderDetails = null;
     notifyListeners();
   }
@@ -294,7 +294,7 @@ class OrderProvider with ChangeNotifier {
     } else if (apiResponse.response.statusCode == 202) {
       _isRefund = false;
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-        backgroundColor: Colors.red,
+        backgroundColor: Theme.of(context).primaryColor,
         content: Text('${apiResponse.response.data['message']}'),
       ));
     } else {

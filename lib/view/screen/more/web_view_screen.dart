@@ -2,8 +2,8 @@ import 'dart:async';
 import 'dart:io';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_sixvalley_ecommerce/view/basewidget/custom_app_bar.dart';
-import 'package:flutter_sixvalley_ecommerce/view/basewidget/custom_loader.dart';
+import 'package:flutter_buymaster_user_app/view/basewidget/custom_app_bar.dart';
+import 'package:flutter_buymaster_user_app/view/basewidget/custom_loader.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
 class WebViewScreen extends StatefulWidget {
@@ -16,7 +16,8 @@ class WebViewScreen extends StatefulWidget {
 }
 
 class _WebViewScreenState extends State<WebViewScreen> {
-  final Completer<WebViewController> _controller = Completer<WebViewController>();
+  final Completer<WebViewController> _controller =
+      Completer<WebViewController>();
   WebViewController controllerGlobal;
   bool _isLoading = true;
 
@@ -35,9 +36,7 @@ class _WebViewScreenState extends State<WebViewScreen> {
         backgroundColor: Theme.of(context).primaryColor,
         body: Column(
           children: [
-
             CustomAppBar(title: widget.title),
-
             Expanded(
               child: Stack(
                 children: [
@@ -46,7 +45,8 @@ class _WebViewScreenState extends State<WebViewScreen> {
                     initialUrl: widget.url,
                     gestureNavigationEnabled: true,
                     onWebViewCreated: (WebViewController webViewController) {
-                      _controller.future.then((value) => controllerGlobal = value);
+                      _controller.future
+                          .then((value) => controllerGlobal = value);
                       _controller.complete(webViewController);
                     },
                     onPageStarted: (String url) {
@@ -62,8 +62,9 @@ class _WebViewScreenState extends State<WebViewScreen> {
                       });
                     },
                   ),
-
-                  _isLoading ? CustomLoader(color: Theme.of(context).primaryColor) : SizedBox.shrink(),
+                  _isLoading
+                      ? CustomLoader(color: Theme.of(context).primaryColor)
+                      : SizedBox.shrink(),
                 ],
               ),
             ),
@@ -74,14 +75,14 @@ class _WebViewScreenState extends State<WebViewScreen> {
   }
 
   Future<bool> _exitApp() async {
-    if(controllerGlobal != null) {
+    if (controllerGlobal != null) {
       if (await controllerGlobal.canGoBack()) {
         controllerGlobal.goBack();
         return Future.value(false);
       } else {
         return Future.value(true);
       }
-    }else {
+    } else {
       return Future.value(true);
     }
   }

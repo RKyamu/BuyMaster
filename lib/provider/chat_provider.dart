@@ -1,17 +1,15 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
-import 'package:flutter_sixvalley_ecommerce/data/model/body/MessageBody.dart';
-import 'package:flutter_sixvalley_ecommerce/data/model/response/base/api_response.dart';
-import 'package:flutter_sixvalley_ecommerce/data/model/response/chat_model.dart';
-import 'package:flutter_sixvalley_ecommerce/data/model/response/message_model.dart';
-import 'package:flutter_sixvalley_ecommerce/data/repository/chat_repo.dart';
-import 'package:flutter_sixvalley_ecommerce/helper/api_checker.dart';
-
+import 'package:flutter_buymaster_user_app/data/model/body/MessageBody.dart';
+import 'package:flutter_buymaster_user_app/data/model/response/base/api_response.dart';
+import 'package:flutter_buymaster_user_app/data/model/response/chat_model.dart';
+import 'package:flutter_buymaster_user_app/data/model/response/message_model.dart';
+import 'package:flutter_buymaster_user_app/data/repository/chat_repo.dart';
+import 'package:flutter_buymaster_user_app/helper/api_checker.dart';
 
 class ChatProvider extends ChangeNotifier {
   final ChatRepo chatRepo;
   ChatProvider({@required this.chatRepo});
-
 
   bool _isSendButtonActive = false;
   bool get isSendButtonActive => _isSendButtonActive;
@@ -27,18 +25,18 @@ class ChatProvider extends ChangeNotifier {
   bool get isLoading => _isLoading;
 
   int _userTypeIndex = 0;
-  int get userTypeIndex =>  _userTypeIndex;
+  int get userTypeIndex => _userTypeIndex;
 
-
-
-
-  Future<void> getChatList(BuildContext context, int offset, {bool reload = true}) async {
-    if(reload){
+  Future<void> getChatList(BuildContext context, int offset,
+      {bool reload = true}) async {
+    if (reload) {
       _chatList = [];
     }
     _isLoading = true;
-    ApiResponse apiResponse = await chatRepo.getChatList(_userTypeIndex == 0? 'seller' : 'delivery-man', offset);
-    if (apiResponse.response != null && apiResponse.response.statusCode == 200) {
+    ApiResponse apiResponse = await chatRepo.getChatList(
+        _userTypeIndex == 0 ? 'seller' : 'delivery-man', offset);
+    if (apiResponse.response != null &&
+        apiResponse.response.statusCode == 200) {
       _chatList = ChatModel.fromJson(apiResponse.response.data).chat;
     } else {
       ApiChecker.checkApi(context, apiResponse);
@@ -47,16 +45,17 @@ class ChatProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-
-  Future<void> getMessageList(BuildContext context, int id, int offset, {bool reload = true}) async {
-    if(reload){
+  Future<void> getMessageList(BuildContext context, int id, int offset,
+      {bool reload = true}) async {
+    if (reload) {
       _messageList = [];
     }
     _isLoading = true;
-    ApiResponse apiResponse = await chatRepo.getMessageList(_userTypeIndex == 0? 'seller' : 'delivery-man', id, offset);
-    if (apiResponse.response != null && apiResponse.response.statusCode == 200) {
+    ApiResponse apiResponse = await chatRepo.getMessageList(
+        _userTypeIndex == 0 ? 'seller' : 'delivery-man', id, offset);
+    if (apiResponse.response != null &&
+        apiResponse.response.statusCode == 200) {
       _messageList = MessageModel.fromJson(apiResponse.response.data).message;
-
     } else {
       ApiChecker.checkApi(context, apiResponse);
     }
@@ -64,14 +63,13 @@ class ChatProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-
-
   void sendMessage(MessageBody messageBody, BuildContext context) async {
     _isSendButtonActive = true;
-    ApiResponse apiResponse = await chatRepo.sendMessage(messageBody, _userTypeIndex == 0? 'seller' : 'delivery-man');
-    if (apiResponse.response != null && apiResponse.response.statusCode == 200) {
+    ApiResponse apiResponse = await chatRepo.sendMessage(
+        messageBody, _userTypeIndex == 0 ? 'seller' : 'delivery-man');
+    if (apiResponse.response != null &&
+        apiResponse.response.statusCode == 200) {
       getMessageList(context, messageBody.id, 1);
-
     } else {
       ApiChecker.checkApi(context, apiResponse);
     }
@@ -100,10 +98,10 @@ class ChatProvider extends ChangeNotifier {
     _isSearching = !_isSearching;
     notifyListeners();
   }
+
   void setUserTypeIndex(BuildContext context, int index) {
     _userTypeIndex = index;
     getChatList(context, 1);
     notifyListeners();
   }
-
 }

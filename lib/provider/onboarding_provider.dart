@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_sixvalley_ecommerce/data/model/response/base/api_response.dart';
-import 'package:flutter_sixvalley_ecommerce/data/model/response/onboarding_model.dart';
-import 'package:flutter_sixvalley_ecommerce/data/repository/onboarding_repo.dart';
-import 'package:flutter_sixvalley_ecommerce/helper/api_checker.dart';
+import 'package:flutter_buymaster_user_app/data/model/response/base/api_response.dart';
+import 'package:flutter_buymaster_user_app/data/model/response/onboarding_model.dart';
+import 'package:flutter_buymaster_user_app/data/repository/onboarding_repo.dart';
+import 'package:flutter_buymaster_user_app/helper/api_checker.dart';
 
 class OnBoardingProvider with ChangeNotifier {
   final OnBoardingRepo onboardingRepo;
@@ -13,16 +13,17 @@ class OnBoardingProvider with ChangeNotifier {
   List<OnboardingModel> get onBoardingList => _onBoardingList;
 
   int _selectedIndex = 0;
-  int get selectedIndex =>_selectedIndex;
+  int get selectedIndex => _selectedIndex;
 
-  changeSelectIndex(int index){
-    _selectedIndex=index;
+  changeSelectIndex(int index) {
+    _selectedIndex = index;
     notifyListeners();
   }
 
   void initBoardingList(BuildContext context) async {
     ApiResponse apiResponse = await onboardingRepo.getOnBoardingList(context);
-    if (apiResponse.response != null && apiResponse.response.statusCode == 200) {
+    if (apiResponse.response != null &&
+        apiResponse.response.statusCode == 200) {
       _onBoardingList.clear();
       _onBoardingList.addAll(apiResponse.response.data);
     } else {

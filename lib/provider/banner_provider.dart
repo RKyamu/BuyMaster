@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_sixvalley_ecommerce/data/model/response/banner_model.dart';
-import 'package:flutter_sixvalley_ecommerce/data/model/response/base/api_response.dart';
-import 'package:flutter_sixvalley_ecommerce/data/model/response/product_model.dart';
-import 'package:flutter_sixvalley_ecommerce/data/repository/banner_repo.dart';
-import 'package:flutter_sixvalley_ecommerce/helper/api_checker.dart';
+import 'package:flutter_buymaster_user_app/data/model/response/banner_model.dart';
+import 'package:flutter_buymaster_user_app/data/model/response/base/api_response.dart';
+import 'package:flutter_buymaster_user_app/data/model/response/product_model.dart';
+import 'package:flutter_buymaster_user_app/data/repository/banner_repo.dart';
+import 'package:flutter_buymaster_user_app/helper/api_checker.dart';
 
 class BannerProvider extends ChangeNotifier {
   final BannerRepo bannerRepo;
@@ -25,9 +25,11 @@ class BannerProvider extends ChangeNotifier {
   Future<void> getBannerList(bool reload, BuildContext context) async {
     if (_mainBannerList == null || reload) {
       ApiResponse apiResponse = await bannerRepo.getBannerList();
-      if (apiResponse.response != null && apiResponse.response.statusCode == 200) {
+      if (apiResponse.response != null &&
+          apiResponse.response.statusCode == 200) {
         _mainBannerList = [];
-        apiResponse.response.data.forEach((bannerModel) => _mainBannerList.add(BannerModel.fromJson(bannerModel)));
+        apiResponse.response.data.forEach((bannerModel) =>
+            _mainBannerList.add(BannerModel.fromJson(bannerModel)));
 
         _currentIndex = 0;
         notifyListeners();
@@ -42,13 +44,13 @@ class BannerProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-
-
   Future<void> getFooterBannerList(BuildContext context) async {
     ApiResponse apiResponse = await bannerRepo.getFooterBannerList();
-    if (apiResponse.response != null && apiResponse.response.statusCode == 200) {
+    if (apiResponse.response != null &&
+        apiResponse.response.statusCode == 200) {
       _footerBannerList = [];
-      apiResponse.response.data.forEach((bannerModel) => _footerBannerList.add(BannerModel.fromJson(bannerModel)));
+      apiResponse.response.data.forEach((bannerModel) =>
+          _footerBannerList.add(BannerModel.fromJson(bannerModel)));
       notifyListeners();
     } else {
       ApiChecker.checkApi(context, apiResponse);
@@ -57,13 +59,14 @@ class BannerProvider extends ChangeNotifier {
 
   Future<void> getMainSectionBanner(BuildContext context) async {
     ApiResponse apiResponse = await bannerRepo.getMainSectionBannerList();
-    if (apiResponse.response != null && apiResponse.response.statusCode == 200) {
+    if (apiResponse.response != null &&
+        apiResponse.response.statusCode == 200) {
       _mainSectionBannerList = [];
-      apiResponse.response.data.forEach((bannerModel) => _mainSectionBannerList.add(BannerModel.fromJson(bannerModel)));
+      apiResponse.response.data.forEach((bannerModel) =>
+          _mainSectionBannerList.add(BannerModel.fromJson(bannerModel)));
       notifyListeners();
     } else {
       ApiChecker.checkApi(context, apiResponse);
     }
   }
-
 }

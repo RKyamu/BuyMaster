@@ -1,4 +1,4 @@
-import 'package:flutter_sixvalley_ecommerce/data/model/response/product_model.dart';
+import 'package:flutter_buymaster_user_app/data/model/response/product_model.dart';
 
 class BannerModel {
   int id;
@@ -14,16 +14,15 @@ class BannerModel {
 
   BannerModel(
       {this.id,
-        this.photo,
-        this.bannerType,
-        this.published,
-        this.createdAt,
-        this.updatedAt,
-        this.url,
-        this.resourceType,
-        this.resourceId,
-        this.product
-      });
+      this.photo,
+      this.bannerType,
+      this.published,
+      this.createdAt,
+      this.updatedAt,
+      this.url,
+      this.resourceType,
+      this.resourceId,
+      this.product});
 
   BannerModel.fromJson(Map<String, dynamic> json) {
     id = json['id'];
@@ -35,7 +34,8 @@ class BannerModel {
     url = json['url'];
     resourceType = json['resource_type'];
     resourceId = json['resource_id'];
-    product = json['product'] != null ? new Product.fromJson(json['product']) : null;
+    product =
+        json['product'] != null ? new Product.fromJson(json['product']) : null;
   }
 
   Map<String, dynamic> toJson() {

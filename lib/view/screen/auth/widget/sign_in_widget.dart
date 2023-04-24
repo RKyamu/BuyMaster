@@ -1,20 +1,20 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_sixvalley_ecommerce/data/model/body/login_model.dart';
-import 'package:flutter_sixvalley_ecommerce/localization/language_constrants.dart';
-import 'package:flutter_sixvalley_ecommerce/provider/auth_provider.dart';
-import 'package:flutter_sixvalley_ecommerce/provider/cart_provider.dart';
-import 'package:flutter_sixvalley_ecommerce/provider/profile_provider.dart';
-import 'package:flutter_sixvalley_ecommerce/provider/splash_provider.dart';
-import 'package:flutter_sixvalley_ecommerce/utill/color_resources.dart';
-import 'package:flutter_sixvalley_ecommerce/utill/custom_themes.dart';
-import 'package:flutter_sixvalley_ecommerce/utill/dimensions.dart';
-import 'package:flutter_sixvalley_ecommerce/view/basewidget/button/custom_button.dart';
-import 'package:flutter_sixvalley_ecommerce/view/basewidget/textfield/custom_password_textfield.dart';
-import 'package:flutter_sixvalley_ecommerce/view/basewidget/textfield/custom_textfield.dart';
-import 'package:flutter_sixvalley_ecommerce/view/screen/auth/forget_password_screen.dart';
-import 'package:flutter_sixvalley_ecommerce/view/screen/auth/widget/mobile_verify_screen.dart';
-import 'package:flutter_sixvalley_ecommerce/view/screen/auth/widget/social_login_widget.dart';
-import 'package:flutter_sixvalley_ecommerce/view/screen/dashboard/dashboard_screen.dart';
+import 'package:flutter_buymaster_user_app/data/model/body/login_model.dart';
+import 'package:flutter_buymaster_user_app/localization/language_constrants.dart';
+import 'package:flutter_buymaster_user_app/provider/auth_provider.dart';
+import 'package:flutter_buymaster_user_app/provider/cart_provider.dart';
+import 'package:flutter_buymaster_user_app/provider/profile_provider.dart';
+import 'package:flutter_buymaster_user_app/provider/splash_provider.dart';
+import 'package:flutter_buymaster_user_app/utill/color_resources.dart';
+import 'package:flutter_buymaster_user_app/utill/custom_themes.dart';
+import 'package:flutter_buymaster_user_app/utill/dimensions.dart';
+import 'package:flutter_buymaster_user_app/view/basewidget/button/custom_button.dart';
+import 'package:flutter_buymaster_user_app/view/basewidget/textfield/custom_password_textfield.dart';
+import 'package:flutter_buymaster_user_app/view/basewidget/textfield/custom_textfield.dart';
+import 'package:flutter_buymaster_user_app/view/screen/auth/forget_password_screen.dart';
+import 'package:flutter_buymaster_user_app/view/screen/auth/widget/mobile_verify_screen.dart';
+import 'package:flutter_buymaster_user_app/view/screen/auth/widget/social_login_widget.dart';
+import 'package:flutter_buymaster_user_app/view/screen/dashboard/dashboard_screen.dart';
 import 'package:provider/provider.dart';
 
 import 'otp_verification_screen.dart';
@@ -64,12 +64,12 @@ class _SignInWidgetState extends State<SignInWidget> {
       if (_email.isEmpty) {
         ScaffoldMessenger.of(context).showSnackBar(SnackBar(
           content: Text(getTranslated('EMAIL_MUST_BE_REQUIRED', context)),
-          backgroundColor: Colors.red,
+          backgroundColor: Theme.of(context).primaryColor,
         ));
       } else if (_password.isEmpty) {
         ScaffoldMessenger.of(context).showSnackBar(SnackBar(
           content: Text(getTranslated('PASSWORD_MUST_BE_REQUIRED', context)),
-          backgroundColor: Colors.red,
+          backgroundColor: Theme.of(context).primaryColor,
         ));
       } else {
         if (Provider.of<AuthProvider>(context, listen: false).isRemember) {
@@ -127,8 +127,9 @@ class _SignInWidgetState extends State<SignInWidget> {
             (route) => false);
       }
     } else {
-      ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text(errorMessage), backgroundColor: Colors.red));
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+          content: Text(errorMessage),
+          backgroundColor: Theme.of(context).primaryColor));
     }
   }
 

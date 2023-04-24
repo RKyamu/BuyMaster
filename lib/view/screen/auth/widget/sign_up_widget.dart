@@ -1,19 +1,19 @@
 import 'package:country_code_picker/country_code.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_sixvalley_ecommerce/data/model/body/register_model.dart';
-import 'package:flutter_sixvalley_ecommerce/helper/email_checker.dart';
-import 'package:flutter_sixvalley_ecommerce/localization/language_constrants.dart';
-import 'package:flutter_sixvalley_ecommerce/provider/auth_provider.dart';
-import 'package:flutter_sixvalley_ecommerce/provider/profile_provider.dart';
-import 'package:flutter_sixvalley_ecommerce/provider/splash_provider.dart';
-import 'package:flutter_sixvalley_ecommerce/utill/color_resources.dart';
-import 'package:flutter_sixvalley_ecommerce/utill/custom_themes.dart';
-import 'package:flutter_sixvalley_ecommerce/utill/dimensions.dart';
-import 'package:flutter_sixvalley_ecommerce/view/basewidget/button/custom_button.dart';
-import 'package:flutter_sixvalley_ecommerce/view/basewidget/textfield/custom_password_textfield.dart';
-import 'package:flutter_sixvalley_ecommerce/view/basewidget/textfield/custom_textfield.dart';
-import 'package:flutter_sixvalley_ecommerce/view/screen/auth/widget/social_login_widget.dart';
-import 'package:flutter_sixvalley_ecommerce/view/screen/dashboard/dashboard_screen.dart';
+import 'package:flutter_buymaster_user_app/data/model/body/register_model.dart';
+import 'package:flutter_buymaster_user_app/helper/email_checker.dart';
+import 'package:flutter_buymaster_user_app/localization/language_constrants.dart';
+import 'package:flutter_buymaster_user_app/provider/auth_provider.dart';
+import 'package:flutter_buymaster_user_app/provider/profile_provider.dart';
+import 'package:flutter_buymaster_user_app/provider/splash_provider.dart';
+import 'package:flutter_buymaster_user_app/utill/color_resources.dart';
+import 'package:flutter_buymaster_user_app/utill/custom_themes.dart';
+import 'package:flutter_buymaster_user_app/utill/dimensions.dart';
+import 'package:flutter_buymaster_user_app/view/basewidget/button/custom_button.dart';
+import 'package:flutter_buymaster_user_app/view/basewidget/textfield/custom_password_textfield.dart';
+import 'package:flutter_buymaster_user_app/view/basewidget/textfield/custom_textfield.dart';
+import 'package:flutter_buymaster_user_app/view/screen/auth/widget/social_login_widget.dart';
+import 'package:flutter_buymaster_user_app/view/screen/dashboard/dashboard_screen.dart';
 import 'package:provider/provider.dart';
 
 import 'code_picker_widget.dart';
@@ -59,43 +59,43 @@ class _SignUpWidgetState extends State<SignUpWidget> {
       if (_firstName.isEmpty) {
         ScaffoldMessenger.of(context).showSnackBar(SnackBar(
           content: Text(getTranslated('first_name_field_is_required', context)),
-          backgroundColor: Colors.red,
+          backgroundColor: Theme.of(context).primaryColor,
         ));
       } else if (_lastName.isEmpty) {
         ScaffoldMessenger.of(context).showSnackBar(SnackBar(
           content: Text(getTranslated('last_name_field_is_required', context)),
-          backgroundColor: Colors.red,
+          backgroundColor: Theme.of(context).primaryColor,
         ));
       } else if (_email.isEmpty) {
         ScaffoldMessenger.of(context).showSnackBar(SnackBar(
           content: Text(getTranslated('EMAIL_MUST_BE_REQUIRED', context)),
-          backgroundColor: Colors.red,
+          backgroundColor: Theme.of(context).primaryColor,
         ));
       } else if (EmailChecker.isNotValid(_email)) {
         ScaffoldMessenger.of(context).showSnackBar(SnackBar(
           content: Text(getTranslated('enter_valid_email_address', context)),
-          backgroundColor: Colors.red,
+          backgroundColor: Theme.of(context).primaryColor,
         ));
       } else if (_phone.isEmpty) {
         ScaffoldMessenger.of(context).showSnackBar(SnackBar(
           content: Text(getTranslated('PHONE_MUST_BE_REQUIRED', context)),
-          backgroundColor: Colors.red,
+          backgroundColor: Theme.of(context).primaryColor,
         ));
       } else if (_password.isEmpty) {
         ScaffoldMessenger.of(context).showSnackBar(SnackBar(
           content: Text(getTranslated('PASSWORD_MUST_BE_REQUIRED', context)),
-          backgroundColor: Colors.red,
+          backgroundColor: Theme.of(context).primaryColor,
         ));
       } else if (_confirmPassword.isEmpty) {
         ScaffoldMessenger.of(context).showSnackBar(SnackBar(
           content:
               Text(getTranslated('CONFIRM_PASSWORD_MUST_BE_REQUIRED', context)),
-          backgroundColor: Colors.red,
+          backgroundColor: Theme.of(context).primaryColor,
         ));
       } else if (_password != _confirmPassword) {
         ScaffoldMessenger.of(context).showSnackBar(SnackBar(
           content: Text(getTranslated('PASSWORD_DID_NOT_MATCH', context)),
-          backgroundColor: Colors.red,
+          backgroundColor: Theme.of(context).primaryColor,
         ));
       } else {
         register.fName = '${_firstNameController.text}';
@@ -163,8 +163,9 @@ class _SignUpWidgetState extends State<SignUpWidget> {
         _confirmPasswordController.clear();
       }
     } else {
-      ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text(errorMessage), backgroundColor: Colors.red));
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+          content: Text(errorMessage),
+          backgroundColor: Theme.of(context).primaryColor));
     }
   }
 

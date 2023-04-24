@@ -1,5 +1,5 @@
-import 'package:flutter_sixvalley_ecommerce/data/model/response/product_model.dart';
-import 'package:flutter_sixvalley_ecommerce/data/model/response/seller_model.dart';
+import 'package:flutter_buymaster_user_app/data/model/response/product_model.dart';
+import 'package:flutter_buymaster_user_app/data/model/response/seller_model.dart';
 
 class OrderDetailsModel {
   int _id;
@@ -21,31 +21,31 @@ class OrderDetailsModel {
   int _refundReq;
   Seller _seller;
 
-  OrderDetailsModel(
-      {int id,
-        int orderId,
-        int productId,
-        int sellerId,
-        String digitalFileAfterSell,
-        Product productDetails,
-        int qty,
-        double price,
-        double tax,
-        double discount,
-        String deliveryStatus,
-        String paymentStatus,
-        String createdAt,
-        String updatedAt,
-        int shippingMethodId,
-        String variant,
-        int refundReq,
-        Seller seller,
-      }) {
+  OrderDetailsModel({
+    int id,
+    int orderId,
+    int productId,
+    int sellerId,
+    String digitalFileAfterSell,
+    Product productDetails,
+    int qty,
+    double price,
+    double tax,
+    double discount,
+    String deliveryStatus,
+    String paymentStatus,
+    String createdAt,
+    String updatedAt,
+    int shippingMethodId,
+    String variant,
+    int refundReq,
+    Seller seller,
+  }) {
     this._id = id;
     this._orderId = orderId;
     this._productId = productId;
     this._sellerId = sellerId;
-    if(digitalFileAfterSell != null){
+    if (digitalFileAfterSell != null) {
       this._digitalFileAfterSell = digitalFileAfterSell;
     }
     this._productDetails = productDetails;
@@ -63,7 +63,6 @@ class OrderDetailsModel {
     if (seller != null) {
       this._seller = seller;
     }
-
   }
 
   int get id => _id;
@@ -90,10 +89,10 @@ class OrderDetailsModel {
     _orderId = json['order_id'];
     _productId = json['product_id'];
     _sellerId = json['seller_id'];
-    if(json['digital_file_after_sell'] != null) {
+    if (json['digital_file_after_sell'] != null) {
       _digitalFileAfterSell = json['digital_file_after_sell'];
     }
-    if(json['product_details'] != null) {
+    if (json['product_details'] != null) {
       _productDetails = Product.fromJson(json['product_details']);
     }
     _qty = json['qty'];
@@ -107,8 +106,8 @@ class OrderDetailsModel {
     _shippingMethodId = json['shipping_method_id'];
     _variant = json['variant'];
     _refundReq = json['refund_request'];
-    _seller = json['seller'] != null ? new Seller.fromJson(json['seller']) : null;
-
+    _seller =
+        json['seller'] != null ? new Seller.fromJson(json['seller']) : null;
   }
 
   Map<String, dynamic> toJson() {
@@ -118,7 +117,7 @@ class OrderDetailsModel {
     data['product_id'] = this._productId;
     data['seller_id'] = this._sellerId;
     data['digital_file_after_sell'] = this._digitalFileAfterSell;
-    if(this._productDetails != null) {
+    if (this._productDetails != null) {
       data['product_details'] = this._productDetails.toJson();
     }
     data['qty'] = this._qty;

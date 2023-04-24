@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_sixvalley_ecommerce/data/model/response/base/api_response.dart';
-import 'package:flutter_sixvalley_ecommerce/data/model/response/product_model.dart';
-import 'package:flutter_sixvalley_ecommerce/data/repository/search_repo.dart';
-import 'package:flutter_sixvalley_ecommerce/helper/api_checker.dart';
+import 'package:flutter_buymaster_user_app/data/model/response/base/api_response.dart';
+import 'package:flutter_buymaster_user_app/data/model/response/product_model.dart';
+import 'package:flutter_buymaster_user_app/data/repository/search_repo.dart';
+import 'package:flutter_buymaster_user_app/helper/api_checker.dart';
 
 class SearchProvider with ChangeNotifier {
   final SearchRepo searchRepo;
@@ -21,19 +21,23 @@ class SearchProvider with ChangeNotifier {
 
   void sortSearchList(double startingPrice, double endingPrice) {
     _searchProductList = [];
-    if(startingPrice > 0 && endingPrice > startingPrice) {
-      _searchProductList.addAll(_filterProductList.where((product) =>
-      (product.unitPrice) > startingPrice && (product.unitPrice) < endingPrice).toList());
-    }else {
+    if (startingPrice > 0 && endingPrice > startingPrice) {
+      _searchProductList.addAll(_filterProductList
+          .where((product) =>
+              (product.unitPrice) > startingPrice &&
+              (product.unitPrice) < endingPrice)
+          .toList());
+    } else {
       _searchProductList.addAll(_filterProductList);
     }
 
     if (_filterIndex == 0) {
-
     } else if (_filterIndex == 1) {
-      _searchProductList.sort((a, b) => a.name.toLowerCase().compareTo(b.name.toLowerCase()));
+      _searchProductList
+          .sort((a, b) => a.name.toLowerCase().compareTo(b.name.toLowerCase()));
     } else if (_filterIndex == 2) {
-      _searchProductList.sort((a, b) => a.name.toLowerCase().compareTo(b.name.toLowerCase()));
+      _searchProductList
+          .sort((a, b) => a.name.toLowerCase().compareTo(b.name.toLowerCase()));
       Iterable iterable = _searchProductList.reversed;
       _searchProductList = iterable.toList();
     } else if (_filterIndex == 3) {
@@ -78,15 +82,18 @@ class SearchProvider with ChangeNotifier {
     notifyListeners();
 
     ApiResponse apiResponse = await searchRepo.getSearchProductList(query);
-    if (apiResponse.response != null && apiResponse.response.statusCode == 200) {
+    if (apiResponse.response != null &&
+        apiResponse.response.statusCode == 200) {
       if (query.isEmpty) {
         _searchProductList = [];
         _filterProductList = [];
       } else {
         _searchProductList = [];
-        _searchProductList.addAll(ProductModel.fromJson(apiResponse.response.data).products);
+        _searchProductList
+            .addAll(ProductModel.fromJson(apiResponse.response.data).products);
         _filterProductList = [];
-        _filterProductList.addAll(ProductModel.fromJson(apiResponse.response.data).products);
+        _filterProductList
+            .addAll(ProductModel.fromJson(apiResponse.response.data).products);
       }
     } else {
       ApiChecker.checkApi(context, apiResponse);
@@ -97,7 +104,6 @@ class SearchProvider with ChangeNotifier {
   void initHistoryList() {
     _historyList = [];
     _historyList.addAll(searchRepo.getSearchAddress());
-
   }
 
   void saveSearchAddress(String searchAddress) async {

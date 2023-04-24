@@ -1,4 +1,4 @@
-import 'package:flutter_sixvalley_ecommerce/data/model/response/product_model.dart';
+import 'package:flutter_buymaster_user_app/data/model/response/product_model.dart';
 
 class ProductDetailsModel {
   int _id;
@@ -51,58 +51,57 @@ class ProductDetailsModel {
   String _averageReview;
   List<Reviews> _reviews;
 
-
-  ProductDetailsModel(
-      {int id,
-        String addedBy,
-        int userId,
-        String name,
-        String slug,
-        String productType,
-        List<CategoryIds> categoryIds,
-        int brandId,
-        String unit,
-        int minQty,
-        int refundable,
-        String digitalProductType,
-        String digitalFileReady,
-        List<String> images,
-        String thumbnail,
-        int featured,
-        String videoProvider,
-        String videoUrl,
-        List<Colors> colors,
-        int variantProduct,
-        List<int> attributes,
-        List<ChoiceOptions> choiceOptions,
-        List<Variation> variation,
-        int published,
-        double unitPrice,
-        double purchasePrice,
-        double tax,
-        String taxType,
-        double discount,
-        String discountType,
-        int currentStock,
-        int minimumOrderQty,
-        String details,
-        int freeShipping,
-        String createdAt,
-        String updatedAt,
-        int status,
-        int featuredStatus,
-        String metaTitle,
-        String metaDescription,
-        String metaImage,
-        int requestStatus,
-        String deniedNote,
-        double shippingCost,
-        int multiplyQty,
-        String code,
-        int reviewsCount,
-        String averageReview,
-        List<Reviews> reviews,
-      }) {
+  ProductDetailsModel({
+    int id,
+    String addedBy,
+    int userId,
+    String name,
+    String slug,
+    String productType,
+    List<CategoryIds> categoryIds,
+    int brandId,
+    String unit,
+    int minQty,
+    int refundable,
+    String digitalProductType,
+    String digitalFileReady,
+    List<String> images,
+    String thumbnail,
+    int featured,
+    String videoProvider,
+    String videoUrl,
+    List<Colors> colors,
+    int variantProduct,
+    List<int> attributes,
+    List<ChoiceOptions> choiceOptions,
+    List<Variation> variation,
+    int published,
+    double unitPrice,
+    double purchasePrice,
+    double tax,
+    String taxType,
+    double discount,
+    String discountType,
+    int currentStock,
+    int minimumOrderQty,
+    String details,
+    int freeShipping,
+    String createdAt,
+    String updatedAt,
+    int status,
+    int featuredStatus,
+    String metaTitle,
+    String metaDescription,
+    String metaImage,
+    int requestStatus,
+    String deniedNote,
+    double shippingCost,
+    int multiplyQty,
+    String code,
+    int reviewsCount,
+    String averageReview,
+    List<Reviews> reviews,
+  }) {
     if (id != null) {
       this._id = id;
     }
@@ -252,7 +251,6 @@ class ProductDetailsModel {
     if (reviews != null) {
       this._reviews = reviews;
     }
-
   }
 
   int get id => _id;
@@ -357,9 +355,9 @@ class ProductDetailsModel {
     _discount = json['discount'].toDouble();
     _discountType = json['discount_type'];
     _currentStock = json['current_stock'];
-    if(json['minimum_order_qty'] != null){
+    if (json['minimum_order_qty'] != null) {
       _minimumOrderQty = int.parse(json['minimum_order_qty'].toString());
-    }else{
+    } else {
       _minimumOrderQty = 1;
     }
 
@@ -470,7 +468,6 @@ class CategoryIds {
   String get id => _id;
   int get position => _position;
 
-
   CategoryIds.fromJson(Map<String, dynamic> json) {
     _id = json['id'];
     _position = json['position'];
@@ -500,7 +497,6 @@ class Colors {
   String get name => _name;
   String get code => _code;
 
-
   Colors.fromJson(Map<String, dynamic> json) {
     _name = json['name'];
     _code = json['code'];
@@ -513,8 +509,6 @@ class Colors {
     return data;
   }
 }
-
-
 
 class Reviews {
   int _id;
@@ -530,15 +524,15 @@ class Reviews {
 
   Reviews(
       {int id,
-        int productId,
-        int customerId,
-        String comment,
-        String attachment,
-        int rating,
-        int status,
-        String createdAt,
-        String updatedAt,
-        Customer customer}) {
+      int productId,
+      int customerId,
+      String comment,
+      String attachment,
+      int rating,
+      int status,
+      String createdAt,
+      String updatedAt,
+      Customer customer}) {
     if (id != null) {
       this._id = id;
     }
@@ -582,7 +576,6 @@ class Reviews {
   String get updatedAt => _updatedAt;
   Customer get customer => _customer;
 
-
   Reviews.fromJson(Map<String, dynamic> json) {
     _id = json['id'];
     _productId = json['product_id'];
@@ -624,14 +617,14 @@ class Customer {
   String _image;
   String _email;
 
-  Customer(
-      {int id,
-        String fName,
-        String lName,
-        String phone,
-        String image,
-        String email,
-      }) {
+  Customer({
+    int id,
+    String fName,
+    String lName,
+    String phone,
+    String image,
+    String email,
+  }) {
     if (id != null) {
       this._id = id;
     }
@@ -650,7 +643,6 @@ class Customer {
     if (email != null) {
       this._email = email;
     }
-
   }
 
   int get id => _id;
@@ -660,7 +652,6 @@ class Customer {
   String get image => _image;
   String get email => _email;
 
-
   Customer.fromJson(Map<String, dynamic> json) {
     _id = json['id'];
     _fName = json['f_name'];
@@ -668,7 +659,6 @@ class Customer {
     _phone = json['phone'];
     _image = json['image'];
     _email = json['email'];
-
   }
 
   Map<String, dynamic> toJson() {

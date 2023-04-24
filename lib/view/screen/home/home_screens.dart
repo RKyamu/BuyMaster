@@ -1,46 +1,46 @@
 import 'package:flutter/material.dart';
 
-import 'package:flutter_sixvalley_ecommerce/helper/product_type.dart';
-import 'package:flutter_sixvalley_ecommerce/localization/language_constrants.dart';
-import 'package:flutter_sixvalley_ecommerce/provider/auth_provider.dart';
-import 'package:flutter_sixvalley_ecommerce/provider/banner_provider.dart';
-import 'package:flutter_sixvalley_ecommerce/provider/brand_provider.dart';
-import 'package:flutter_sixvalley_ecommerce/provider/cart_provider.dart';
-import 'package:flutter_sixvalley_ecommerce/provider/category_provider.dart';
-import 'package:flutter_sixvalley_ecommerce/provider/featured_deal_provider.dart';
-import 'package:flutter_sixvalley_ecommerce/provider/flash_deal_provider.dart';
-import 'package:flutter_sixvalley_ecommerce/provider/home_category_product_provider.dart';
-import 'package:flutter_sixvalley_ecommerce/provider/product_provider.dart';
-import 'package:flutter_sixvalley_ecommerce/provider/splash_provider.dart';
-import 'package:flutter_sixvalley_ecommerce/provider/theme_provider.dart';
-import 'package:flutter_sixvalley_ecommerce/provider/top_seller_provider.dart';
-import 'package:flutter_sixvalley_ecommerce/utill/color_resources.dart';
-import 'package:flutter_sixvalley_ecommerce/utill/custom_themes.dart';
-import 'package:flutter_sixvalley_ecommerce/utill/dimensions.dart';
-import 'package:flutter_sixvalley_ecommerce/utill/images.dart';
-import 'package:flutter_sixvalley_ecommerce/view/basewidget/title_row.dart';
-import 'package:flutter_sixvalley_ecommerce/view/screen/brand/all_brand_screen.dart';
-import 'package:flutter_sixvalley_ecommerce/view/screen/cart/cart_screen.dart';
-import 'package:flutter_sixvalley_ecommerce/view/screen/category/all_category_screen.dart';
-import 'package:flutter_sixvalley_ecommerce/view/screen/featureddeal/featured_deal_screen.dart';
-import 'package:flutter_sixvalley_ecommerce/view/screen/home/widget/announcement.dart';
-import 'package:flutter_sixvalley_ecommerce/view/screen/home/widget/banners_view.dart';
-import 'package:flutter_sixvalley_ecommerce/view/screen/home/widget/brand_view.dart';
-import 'package:flutter_sixvalley_ecommerce/view/screen/home/widget/category_view.dart';
-import 'package:flutter_sixvalley_ecommerce/view/screen/home/widget/featured_deal_view.dart';
-import 'package:flutter_sixvalley_ecommerce/view/screen/home/widget/featured_product_view.dart';
-import 'package:flutter_sixvalley_ecommerce/view/screen/home/widget/flash_deals_view.dart';
-import 'package:flutter_sixvalley_ecommerce/view/screen/home/widget/footer_banner.dart';
-import 'package:flutter_sixvalley_ecommerce/view/screen/home/widget/home_category_product_view.dart';
-import 'package:flutter_sixvalley_ecommerce/view/screen/home/widget/latest_product_view.dart';
-import 'package:flutter_sixvalley_ecommerce/view/screen/home/widget/main_section_banner.dart';
-import 'package:flutter_sixvalley_ecommerce/view/screen/home/widget/products_view.dart';
-import 'package:flutter_sixvalley_ecommerce/view/screen/flashdeal/flash_deal_screen.dart';
-import 'package:flutter_sixvalley_ecommerce/view/screen/home/widget/recommended_product_view.dart';
-import 'package:flutter_sixvalley_ecommerce/view/screen/home/widget/top_seller_view.dart';
-import 'package:flutter_sixvalley_ecommerce/view/screen/product/view_all_product_screen.dart';
-import 'package:flutter_sixvalley_ecommerce/view/screen/search/search_screen.dart';
-import 'package:flutter_sixvalley_ecommerce/view/screen/topSeller/all_top_seller_screen.dart';
+import 'package:flutter_buymaster_user_app/helper/product_type.dart';
+import 'package:flutter_buymaster_user_app/localization/language_constrants.dart';
+import 'package:flutter_buymaster_user_app/provider/auth_provider.dart';
+import 'package:flutter_buymaster_user_app/provider/banner_provider.dart';
+import 'package:flutter_buymaster_user_app/provider/brand_provider.dart';
+import 'package:flutter_buymaster_user_app/provider/cart_provider.dart';
+import 'package:flutter_buymaster_user_app/provider/category_provider.dart';
+import 'package:flutter_buymaster_user_app/provider/featured_deal_provider.dart';
+import 'package:flutter_buymaster_user_app/provider/flash_deal_provider.dart';
+import 'package:flutter_buymaster_user_app/provider/home_category_product_provider.dart';
+import 'package:flutter_buymaster_user_app/provider/product_provider.dart';
+import 'package:flutter_buymaster_user_app/provider/splash_provider.dart';
+import 'package:flutter_buymaster_user_app/provider/theme_provider.dart';
+import 'package:flutter_buymaster_user_app/provider/top_seller_provider.dart';
+import 'package:flutter_buymaster_user_app/utill/color_resources.dart';
+import 'package:flutter_buymaster_user_app/utill/custom_themes.dart';
+import 'package:flutter_buymaster_user_app/utill/dimensions.dart';
+import 'package:flutter_buymaster_user_app/utill/images.dart';
+import 'package:flutter_buymaster_user_app/view/basewidget/title_row.dart';
+import 'package:flutter_buymaster_user_app/view/screen/brand/all_brand_screen.dart';
+import 'package:flutter_buymaster_user_app/view/screen/cart/cart_screen.dart';
+import 'package:flutter_buymaster_user_app/view/screen/category/all_category_screen.dart';
+import 'package:flutter_buymaster_user_app/view/screen/featureddeal/featured_deal_screen.dart';
+import 'package:flutter_buymaster_user_app/view/screen/home/widget/announcement.dart';
+import 'package:flutter_buymaster_user_app/view/screen/home/widget/banners_view.dart';
+import 'package:flutter_buymaster_user_app/view/screen/home/widget/brand_view.dart';
+import 'package:flutter_buymaster_user_app/view/screen/home/widget/category_view.dart';
+import 'package:flutter_buymaster_user_app/view/screen/home/widget/featured_deal_view.dart';
+import 'package:flutter_buymaster_user_app/view/screen/home/widget/featured_product_view.dart';
+import 'package:flutter_buymaster_user_app/view/screen/home/widget/flash_deals_view.dart';
+import 'package:flutter_buymaster_user_app/view/screen/home/widget/footer_banner.dart';
+import 'package:flutter_buymaster_user_app/view/screen/home/widget/home_category_product_view.dart';
+import 'package:flutter_buymaster_user_app/view/screen/home/widget/latest_product_view.dart';
+import 'package:flutter_buymaster_user_app/view/screen/home/widget/main_section_banner.dart';
+import 'package:flutter_buymaster_user_app/view/screen/home/widget/products_view.dart';
+import 'package:flutter_buymaster_user_app/view/screen/flashdeal/flash_deal_screen.dart';
+import 'package:flutter_buymaster_user_app/view/screen/home/widget/recommended_product_view.dart';
+import 'package:flutter_buymaster_user_app/view/screen/home/widget/top_seller_view.dart';
+import 'package:flutter_buymaster_user_app/view/screen/product/view_all_product_screen.dart';
+import 'package:flutter_buymaster_user_app/view/screen/search/search_screen.dart';
+import 'package:flutter_buymaster_user_app/view/screen/topSeller/all_top_seller_screen.dart';
 import 'package:provider/provider.dart';
 
 class HomePage extends StatefulWidget {
@@ -137,25 +137,29 @@ class _HomePageState extends State<HomePage> {
                     floating: true,
                     elevation: 0,
                     centerTitle: false,
+                    toolbarHeight: 40.5,
                     automaticallyImplyLeading: false,
-                    backgroundColor: Theme.of(context).highlightColor,
-                    title: Image.asset(Images.logo_with_name_image, height: 35),
+                    backgroundColor: Theme.of(context).primaryColor,
+                    title: Image.asset(Images.logo_with_name_image, height: 40),
                     actions: [
                       Padding(
                         padding: const EdgeInsets.only(right: 12.0),
                         child: IconButton(
                           onPressed: () {
                             Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (_) => CartScreen()));
+                              context,
+                              MaterialPageRoute(
+                                builder: (_) => CartScreen(),
+                              ),
+                            );
                           },
                           icon: Stack(clipBehavior: Clip.none, children: [
                             Image.asset(
                               Images.cart_arrow_down_image,
                               height: Dimensions.ICON_SIZE_DEFAULT,
                               width: Dimensions.ICON_SIZE_DEFAULT,
-                              color: ColorResources.getPrimary(context),
+                              color: Colors.white,
+                              // color: ColorResources.getPrimary(context),
                             ),
                             Positioned(
                               top: -4,
@@ -192,6 +196,7 @@ class _HomePageState extends State<HomePage> {
                               horizontal: Dimensions.HOME_PAGE_PADDING,
                               vertical: Dimensions.PADDING_SIZE_SMALL),
                           color: ColorResources.getHomeBg(context),
+                          // color: Theme.of(context).primaryColor,
                           alignment: Alignment.center,
                           child: Container(
                             padding: EdgeInsets.only(
@@ -223,7 +228,7 @@ class _HomePageState extends State<HomePage> {
                                     MainAxisAlignment.spaceBetween,
                                 children: [
                                   Text(
-                                    getTranslated('SEARCH_HINT', context),
+                                    'Search buymaster.in ...',
                                     style: robotoRegular.copyWith(
                                         color: Theme.of(context).hintColor),
                                   ),
@@ -267,20 +272,24 @@ class _HomePageState extends State<HomePage> {
                           // Category
                           Padding(
                             padding: const EdgeInsets.symmetric(
-                                horizontal:
-                                    Dimensions.PADDING_SIZE_EXTRA_EXTRA_SMALL,
-                                vertical: Dimensions.PADDING_SIZE_EXTRA_SMALL),
+                              horizontal:
+                                  Dimensions.PADDING_SIZE_EXTRA_EXTRA_SMALL,
+                              vertical: Dimensions.PADDING_SIZE_EXTRA_SMALL,
+                            ),
                             child: TitleRow(
-                                title: getTranslated('CATEGORY', context),
-                                onTap: () => Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (_) => AllCategoryScreen()))),
+                              title: getTranslated('CATEGORY', context),
+                              onTap: () => Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (_) => AllCategoryScreen()),
+                              ),
+                            ),
                           ),
                           SizedBox(height: Dimensions.PADDING_SIZE_SMALL),
                           Padding(
                             padding: const EdgeInsets.only(
-                                bottom: Dimensions.HOME_PAGE_PADDING),
+                              bottom: Dimensions.HOME_PAGE_PADDING,
+                            ),
                             child: CategoryView(isHomePage: true),
                           ),
 
@@ -298,10 +307,11 @@ class _HomePageState extends State<HomePage> {
                                           : null,
                                       onTap: () {
                                         Navigator.push(
-                                            context,
-                                            MaterialPageRoute(
-                                                builder: (_) =>
-                                                    FlashDealScreen()));
+                                          context,
+                                          MaterialPageRoute(
+                                            builder: (_) => FlashDealScreen(),
+                                          ),
+                                        );
                                       },
                                       isFlash: true,
                                     )
@@ -335,19 +345,19 @@ class _HomePageState extends State<HomePage> {
                                   "1"
                               ? Padding(
                                   padding: const EdgeInsets.only(
-                                      left: Dimensions.PADDING_SIZE_EXTRA_SMALL,
-                                      right:
-                                          Dimensions.PADDING_SIZE_EXTRA_SMALL,
-                                      bottom:
-                                          Dimensions.PADDING_SIZE_EXTRA_SMALL),
+                                    left: Dimensions.PADDING_SIZE_EXTRA_SMALL,
+                                    right: Dimensions.PADDING_SIZE_EXTRA_SMALL,
+                                    bottom: Dimensions.PADDING_SIZE_EXTRA_SMALL,
+                                  ),
                                   child: TitleRow(
                                       title: getTranslated('brand', context),
                                       onTap: () {
                                         Navigator.push(
-                                            context,
-                                            MaterialPageRoute(
-                                                builder: (_) =>
-                                                    AllBrandScreen()));
+                                          context,
+                                          MaterialPageRoute(
+                                            builder: (_) => AllBrandScreen(),
+                                          ),
+                                        );
                                       }),
                                 )
                               : SizedBox(),
@@ -373,11 +383,13 @@ class _HomePageState extends State<HomePage> {
                                   title: getTranslated('top_seller', context),
                                   onTap: () {
                                     Navigator.push(
-                                        context,
-                                        MaterialPageRoute(
-                                            builder: (_) => AllTopSellerScreen(
-                                                  topSeller: null,
-                                                )));
+                                      context,
+                                      MaterialPageRoute(
+                                        builder: (_) => AllTopSellerScreen(
+                                          topSeller: null,
+                                        ),
+                                      ),
+                                    );
                                   },
                                 ),
                           singleVendor
@@ -429,11 +441,15 @@ class _HomePageState extends State<HomePage> {
                                               'featured_products', context),
                                           onTap: () {
                                             Navigator.push(
-                                                context,
-                                                MaterialPageRoute(
-                                                    builder: (_) => AllProductScreen(
-                                                        productType: ProductType
-                                                            .FEATURED_PRODUCT)));
+                                              context,
+                                              MaterialPageRoute(
+                                                builder: (_) =>
+                                                    AllProductScreen(
+                                                  productType: ProductType
+                                                      .FEATURED_PRODUCT,
+                                                ),
+                                              ),
+                                            );
                                           }),
                                     ),
                                   )
@@ -460,17 +476,19 @@ class _HomePageState extends State<HomePage> {
                                           0
                                   ? Padding(
                                       padding: const EdgeInsets.only(
-                                          bottom:
-                                              Dimensions.PADDING_SIZE_SMALL),
+                                        bottom: Dimensions.PADDING_SIZE_SMALL,
+                                      ),
                                       child: TitleRow(
                                           title: getTranslated(
                                               'featured_deals', context),
                                           onTap: () {
                                             Navigator.push(
-                                                context,
-                                                MaterialPageRoute(
-                                                    builder: (_) =>
-                                                        FeaturedDealScreen()));
+                                              context,
+                                              MaterialPageRoute(
+                                                builder: (_) =>
+                                                    FeaturedDealScreen(),
+                                              ),
+                                            );
                                           }),
                                     )
                                   : SizedBox.shrink();
@@ -540,11 +558,13 @@ class _HomePageState extends State<HomePage> {
                                     getTranslated('latest_products', context),
                                 onTap: () {
                                   Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                          builder: (_) => AllProductScreen(
-                                              productType:
-                                                  ProductType.LATEST_PRODUCT)));
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (_) => AllProductScreen(
+                                        productType: ProductType.LATEST_PRODUCT,
+                                      ),
+                                    ),
+                                  );
                                 }),
                           ),
                           SizedBox(height: Dimensions.PADDING_SIZE_SMALL),
@@ -580,20 +600,25 @@ class _HomePageState extends State<HomePage> {
                                       Dimensions.PADDING_SIZE_EXTRA_SMALL),
                               child: Row(children: [
                                 Expanded(
-                                    child: Text(
-                                        prodProvider.title == 'xyz'
-                                            ? getTranslated(
-                                                'new_arrival', context)
-                                            : prodProvider.title,
-                                        style: titleHeader)),
+                                  child: Text(
+                                    prodProvider.title == 'xyz'
+                                        ? getTranslated('new_arrival', context)
+                                        : prodProvider.title,
+                                    style: titleHeader,
+                                  ),
+                                ),
                                 prodProvider.latestProductList != null
                                     ? PopupMenuButton(
                                         itemBuilder: (context) {
                                           return [
                                             PopupMenuItem(
                                                 value: ProductType.NEW_ARRIVAL,
-                                                child: Text(getTranslated(
-                                                    'new_arrival', context)),
+                                                child: Text(
+                                                  getTranslated(
+                                                    'new_arrival',
+                                                    context,
+                                                  ),
+                                                ),
                                                 textStyle:
                                                     robotoRegular.copyWith(
                                                   color: Theme.of(context)
@@ -601,8 +626,12 @@ class _HomePageState extends State<HomePage> {
                                                 )),
                                             PopupMenuItem(
                                                 value: ProductType.TOP_PRODUCT,
-                                                child: Text(getTranslated(
-                                                    'top_product', context)),
+                                                child: Text(
+                                                  getTranslated(
+                                                    'top_product',
+                                                    context,
+                                                  ),
+                                                ),
                                                 textStyle:
                                                     robotoRegular.copyWith(
                                                   color: Theme.of(context)

@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_sixvalley_ecommerce/data/model/response/order_model.dart';
-import 'package:flutter_sixvalley_ecommerce/localization/language_constrants.dart';
-import 'package:flutter_sixvalley_ecommerce/provider/auth_provider.dart';
-import 'package:flutter_sixvalley_ecommerce/provider/order_provider.dart';
-import 'package:flutter_sixvalley_ecommerce/utill/color_resources.dart';
-import 'package:flutter_sixvalley_ecommerce/utill/dimensions.dart';
-import 'package:flutter_sixvalley_ecommerce/view/basewidget/custom_app_bar.dart';
-import 'package:flutter_sixvalley_ecommerce/view/basewidget/not_loggedin_widget.dart';
-import 'package:flutter_sixvalley_ecommerce/view/screen/order/widget/order_shimmer.dart';
-import 'package:flutter_sixvalley_ecommerce/view/screen/order/widget/order_type_button.dart';
-import 'package:flutter_sixvalley_ecommerce/view/screen/order/widget/order_widget.dart';
+import 'package:flutter_buymaster_user_app/data/model/response/order_model.dart';
+import 'package:flutter_buymaster_user_app/localization/language_constrants.dart';
+import 'package:flutter_buymaster_user_app/provider/auth_provider.dart';
+import 'package:flutter_buymaster_user_app/provider/order_provider.dart';
+import 'package:flutter_buymaster_user_app/utill/color_resources.dart';
+import 'package:flutter_buymaster_user_app/utill/dimensions.dart';
+import 'package:flutter_buymaster_user_app/view/basewidget/custom_app_bar.dart';
+import 'package:flutter_buymaster_user_app/view/basewidget/not_loggedin_widget.dart';
+import 'package:flutter_buymaster_user_app/view/screen/order/widget/order_shimmer.dart';
+import 'package:flutter_buymaster_user_app/view/screen/order/widget/order_type_button.dart';
+import 'package:flutter_buymaster_user_app/view/screen/order/widget/order_widget.dart';
 import 'package:provider/provider.dart';
 
 class OrderScreen extends StatefulWidget {

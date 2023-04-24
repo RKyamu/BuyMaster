@@ -1,6 +1,6 @@
-import 'package:flutter_sixvalley_ecommerce/data/model/response/shipping_method_model.dart';
+import 'package:flutter_buymaster_user_app/data/model/response/shipping_method_model.dart';
 
-class ShippingModel{
+class ShippingModel {
   int shippingIndex;
   String groupId;
   List<ShippingMethodModel> shippingMethodList;

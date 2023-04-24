@@ -1,21 +1,21 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_sixvalley_ecommerce/data/model/response/cart_model.dart';
-import 'package:flutter_sixvalley_ecommerce/helper/price_converter.dart';
-import 'package:flutter_sixvalley_ecommerce/localization/language_constrants.dart';
-import 'package:flutter_sixvalley_ecommerce/provider/auth_provider.dart';
-import 'package:flutter_sixvalley_ecommerce/provider/cart_provider.dart';
-import 'package:flutter_sixvalley_ecommerce/provider/splash_provider.dart';
-import 'package:flutter_sixvalley_ecommerce/utill/color_resources.dart';
-import 'package:flutter_sixvalley_ecommerce/utill/custom_themes.dart';
-import 'package:flutter_sixvalley_ecommerce/utill/dimensions.dart';
-import 'package:flutter_sixvalley_ecommerce/view/basewidget/animated_custom_dialog.dart';
-import 'package:flutter_sixvalley_ecommerce/view/basewidget/custom_app_bar.dart';
-import 'package:flutter_sixvalley_ecommerce/view/basewidget/guest_dialog.dart';
-import 'package:flutter_sixvalley_ecommerce/view/basewidget/no_internet_screen.dart';
-import 'package:flutter_sixvalley_ecommerce/view/basewidget/show_custom_snakbar.dart';
-import 'package:flutter_sixvalley_ecommerce/view/screen/cart/widget/cart_widget.dart';
-import 'package:flutter_sixvalley_ecommerce/view/screen/checkout/checkout_screen.dart';
-import 'package:flutter_sixvalley_ecommerce/view/screen/checkout/widget/shipping_method_bottom_sheet.dart';
+import 'package:flutter_buymaster_user_app/data/model/response/cart_model.dart';
+import 'package:flutter_buymaster_user_app/helper/price_converter.dart';
+import 'package:flutter_buymaster_user_app/localization/language_constrants.dart';
+import 'package:flutter_buymaster_user_app/provider/auth_provider.dart';
+import 'package:flutter_buymaster_user_app/provider/cart_provider.dart';
+import 'package:flutter_buymaster_user_app/provider/splash_provider.dart';
+import 'package:flutter_buymaster_user_app/utill/color_resources.dart';
+import 'package:flutter_buymaster_user_app/utill/custom_themes.dart';
+import 'package:flutter_buymaster_user_app/utill/dimensions.dart';
+import 'package:flutter_buymaster_user_app/view/basewidget/animated_custom_dialog.dart';
+import 'package:flutter_buymaster_user_app/view/basewidget/custom_app_bar.dart';
+import 'package:flutter_buymaster_user_app/view/basewidget/guest_dialog.dart';
+import 'package:flutter_buymaster_user_app/view/basewidget/no_internet_screen.dart';
+import 'package:flutter_buymaster_user_app/view/basewidget/show_custom_snakbar.dart';
+import 'package:flutter_buymaster_user_app/view/screen/cart/widget/cart_widget.dart';
+import 'package:flutter_buymaster_user_app/view/screen/checkout/checkout_screen.dart';
+import 'package:flutter_buymaster_user_app/view/screen/checkout/widget/shipping_method_bottom_sheet.dart';
 import 'package:provider/provider.dart';
 
 class CartScreen extends StatefulWidget {
@@ -127,13 +127,15 @@ class _CartScreenState extends State<CartScreen> {
             ? Container(
                 height: 80,
                 padding: EdgeInsets.symmetric(
-                    horizontal: Dimensions.PADDING_SIZE_LARGE,
-                    vertical: Dimensions.PADDING_SIZE_DEFAULT),
+                  horizontal: Dimensions.PADDING_SIZE_LARGE,
+                  vertical: Dimensions.PADDING_SIZE_DEFAULT,
+                ),
                 decoration: BoxDecoration(
                   color: Theme.of(context).cardColor,
                   borderRadius: BorderRadius.only(
-                      topRight: Radius.circular(10),
-                      topLeft: Radius.circular(10)),
+                    topRight: Radius.circular(10),
+                    topLeft: Radius.circular(10),
+                  ),
                 ),
                 child: cartList.isNotEmpty
                     ? Row(
@@ -169,7 +171,8 @@ class _CartScreenState extends State<CartScreen> {
                                         content: Text(getTranslated(
                                             'select_at_least_one_product',
                                             context)),
-                                        backgroundColor: Colors.red,
+                                        backgroundColor:
+                                            Theme.of(context).primaryColor,
                                       ));
                                     } else if (cart.chosenShippingList.length <
                                             orderTypeShipping.length &&
@@ -180,11 +183,16 @@ class _CartScreenState extends State<CartScreen> {
                                             'sellerwise_shipping' &&
                                         !_onlyDigital) {
                                       ScaffoldMessenger.of(context)
-                                          .showSnackBar(SnackBar(
-                                              content: Text(getTranslated(
+                                          .showSnackBar(
+                                        SnackBar(
+                                            content: Text(
+                                              getTranslated(
                                                   'select_all_shipping_method',
-                                                  context)),
-                                              backgroundColor: Colors.red));
+                                                  context),
+                                            ),
+                                            backgroundColor:
+                                                Theme.of(context).primaryColor),
+                                      );
                                     } else if (cart.chosenShippingList.length <
                                             1 &&
                                         Provider.of<SplashProvider>(context,
@@ -199,23 +207,30 @@ class _CartScreenState extends State<CartScreen> {
                                             'order_wise' &&
                                         !_onlyDigital) {
                                       ScaffoldMessenger.of(context)
-                                          .showSnackBar(SnackBar(
-                                              content: Text(getTranslated(
+                                          .showSnackBar(
+                                        SnackBar(
+                                            content: Text(
+                                              getTranslated(
                                                   'select_all_shipping_method',
-                                                  context)),
-                                              backgroundColor: Colors.red));
+                                                  context),
+                                            ),
+                                            backgroundColor:
+                                                Theme.of(context).primaryColor),
+                                      );
                                     } else {
                                       Navigator.push(
-                                          context,
-                                          MaterialPageRoute(
-                                              builder: (_) => CheckoutScreen(
-                                                    cartList: cartList,
-                                                    totalOrderAmount: amount,
-                                                    shippingFee: shippingAmount,
-                                                    discount: discount,
-                                                    tax: tax,
-                                                    onlyDigital: _onlyDigital,
-                                                  )));
+                                        context,
+                                        MaterialPageRoute(
+                                          builder: (_) => CheckoutScreen(
+                                            cartList: cartList,
+                                            totalOrderAmount: amount,
+                                            shippingFee: shippingAmount,
+                                            discount: discount,
+                                            tax: tax,
+                                            onlyDigital: _onlyDigital,
+                                          ),
+                                        ),
+                                      );
                                     }
                                   } else {
                                     showAnimatedDialog(context, GuestDialog(),
@@ -237,12 +252,13 @@ class _CartScreenState extends State<CartScreen> {
                                               Dimensions.PADDING_SIZE_SMALL,
                                           vertical: Dimensions.FONT_SIZE_SMALL),
                                       child: Text(
-                                          getTranslated('checkout', context),
-                                          style: titilliumSemiBold.copyWith(
-                                            fontSize:
-                                                Dimensions.FONT_SIZE_DEFAULT,
-                                            color: Theme.of(context).cardColor,
-                                          )),
+                                        getTranslated('checkout', context),
+                                        style: titilliumSemiBold.copyWith(
+                                          fontSize:
+                                              Dimensions.FONT_SIZE_DEFAULT,
+                                          color: Theme.of(context).cardColor,
+                                        ),
+                                      ),
                                     ),
                                   ),
                                 ),

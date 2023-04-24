@@ -2,7 +2,8 @@ import 'dart:io';
 
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_dynamic_links/firebase_dynamic_links.dart';
-import 'package:flutter_sixvalley_ecommerce/view/screen/product/product_details_screen.dart';
+import 'package:flutter/services.dart';
+import '/view/screen/product/product_details_screen.dart';
 import 'firebase_options.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
@@ -259,6 +260,7 @@ class MyApp extends StatelessWidget {
     AppConstants.languages.forEach((language) {
       _locals.add(Locale(language.languageCode, language.countryCode));
     });
+
     return MaterialApp(
       title: AppConstants.APP_NAME,
       navigatorKey: navigatorKey,

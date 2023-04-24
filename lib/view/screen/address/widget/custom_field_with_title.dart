@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_sixvalley_ecommerce/utill/custom_themes.dart';
-import 'package:flutter_sixvalley_ecommerce/utill/dimensions.dart';
-
+import 'package:flutter_buymaster_user_app/utill/custom_themes.dart';
+import 'package:flutter_buymaster_user_app/utill/dimensions.dart';
 
 class CustomFieldWithTitle extends StatelessWidget {
   final Widget customTextField;
@@ -27,24 +26,35 @@ class CustomFieldWithTitle extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: isPadding ? EdgeInsets.all(Dimensions.PADDING_SIZE_DEFAULT) : EdgeInsets.all(Dimensions.PADDING_SIZE_EXTRA_SMALL),
-      child: Column( crossAxisAlignment: CrossAxisAlignment.start, children: [
-        Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            RichText(
-              text: TextSpan(
-                text: title, style: robotoRegular.copyWith(color: Theme.of(context).primaryColor),
-                children: <TextSpan>[
-                 requiredField ? TextSpan(text: '  *', style: robotoBold.copyWith(color: Colors.red)) : TextSpan(),
-                ],
+      padding: isPadding
+          ? EdgeInsets.all(Dimensions.PADDING_SIZE_DEFAULT)
+          : EdgeInsets.all(Dimensions.PADDING_SIZE_EXTRA_SMALL),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              RichText(
+                text: TextSpan(
+                  text: title,
+                  style: robotoRegular.copyWith(
+                      color: Theme.of(context).primaryColor),
+                  children: <TextSpan>[
+                    requiredField
+                        ? TextSpan(
+                            text: '  *',
+                            style: robotoBold.copyWith(color: Colors.red))
+                        : TextSpan(),
+                  ],
+                ),
               ),
-            ),
-          ],
-        ),
-        SizedBox(height: Dimensions.PADDING_SIZE_EXTRA_SMALL),
-        
-        customTextField,
-      ],),
+            ],
+          ),
+          SizedBox(height: Dimensions.PADDING_SIZE_EXTRA_SMALL),
+          customTextField,
+        ],
+      ),
     );
   }
 }

@@ -1,20 +1,20 @@
 import 'dart:async';
 import 'package:connectivity/connectivity.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_sixvalley_ecommerce/localization/language_constrants.dart';
-import 'package:flutter_sixvalley_ecommerce/provider/auth_provider.dart';
-import 'package:flutter_sixvalley_ecommerce/provider/profile_provider.dart';
-import 'package:flutter_sixvalley_ecommerce/provider/splash_provider.dart';
-import 'package:flutter_sixvalley_ecommerce/provider/theme_provider.dart';
-import 'package:flutter_sixvalley_ecommerce/utill/color_resources.dart';
-import 'package:flutter_sixvalley_ecommerce/utill/images.dart';
-import 'package:flutter_sixvalley_ecommerce/view/basewidget/no_internet_screen.dart';
-import 'package:flutter_sixvalley_ecommerce/view/screen/auth/auth_screen.dart';
-import 'package:flutter_sixvalley_ecommerce/view/screen/dashboard/dashboard_screen.dart';
-import 'package:flutter_sixvalley_ecommerce/view/screen/maintenance/maintenance_screen.dart';
-import 'package:flutter_sixvalley_ecommerce/view/screen/onboarding/onboarding_screen.dart';
-import 'package:flutter_sixvalley_ecommerce/view/screen/product/product_details_screen.dart';
-import 'package:flutter_sixvalley_ecommerce/view/screen/splash/widget/splash_painter.dart';
+import 'package:flutter_buymaster_user_app/localization/language_constrants.dart';
+import 'package:flutter_buymaster_user_app/provider/auth_provider.dart';
+import 'package:flutter_buymaster_user_app/provider/profile_provider.dart';
+import 'package:flutter_buymaster_user_app/provider/splash_provider.dart';
+import 'package:flutter_buymaster_user_app/provider/theme_provider.dart';
+import 'package:flutter_buymaster_user_app/utill/color_resources.dart';
+import 'package:flutter_buymaster_user_app/utill/images.dart';
+import 'package:flutter_buymaster_user_app/view/basewidget/no_internet_screen.dart';
+import 'package:flutter_buymaster_user_app/view/screen/auth/auth_screen.dart';
+import 'package:flutter_buymaster_user_app/view/screen/dashboard/dashboard_screen.dart';
+import 'package:flutter_buymaster_user_app/view/screen/maintenance/maintenance_screen.dart';
+import 'package:flutter_buymaster_user_app/view/screen/onboarding/onboarding_screen.dart';
+import 'package:flutter_buymaster_user_app/view/screen/product/product_details_screen.dart';
+import 'package:flutter_buymaster_user_app/view/screen/splash/widget/splash_painter.dart';
 import 'package:provider/provider.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -26,9 +26,13 @@ class SplashScreen extends StatefulWidget {
   _SplashScreenState createState() => _SplashScreenState();
 }
 
-class _SplashScreenState extends State<SplashScreen> {
+class _SplashScreenState extends State<SplashScreen>
+    with TickerProviderStateMixin {
   GlobalKey<ScaffoldMessengerState> _globalKey = GlobalKey();
   StreamSubscription<ConnectivityResult> _onConnectivityChanged;
+
+  AnimationController _animationController;
+  Animation<Offset> _animationSlide, _animationBounce;
 
   @override
   void initState() {
@@ -45,7 +49,7 @@ class _SplashScreenState extends State<SplashScreen> {
             ? SizedBox()
             : ScaffoldMessenger.of(context).hideCurrentSnackBar();
         ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-          backgroundColor: isNotConnected ? Colors.red : Colors.green,
+          backgroundColor: Theme.of(context).primaryColor,
           duration: Duration(seconds: isNotConnected ? 6000 : 3),
           content: Text(
             isNotConnected
@@ -61,13 +65,65 @@ class _SplashScreenState extends State<SplashScreen> {
       _firstTime = false;
     });
 
+    _animationController = AnimationController(
+      vsync: this,
+      duration: Duration(milliseconds: 3000),
+    );
+
+    _animationSlide = Tween<Offset>(
+      begin: Offset(-1.0, 0.0),
+      end: Offset.zero,
+    ).animate(
+      CurvedAnimation(
+        parent: _animationController,
+        curve: Curves.easeInOut,
+      ),
+    );
+
+    _animationBounce = TweenSequence([
+      TweenSequenceItem(
+        tween: Tween<Offset>(begin: Offset(-1, 0), end: Offset(-0.25, 0))
+            .chain(CurveTween(curve: Curves.easeOut)),
+        weight: 40,
+      ),
+      TweenSequenceItem(
+        tween: Tween<Offset>(begin: Offset(-0.25, 0), end: Offset(0.25, 0))
+            .chain(CurveTween(curve: Curves.bounceOut)),
+        weight: 20,
+      ),
+      TweenSequenceItem(
+        tween: Tween<Offset>(begin: Offset(0.25, 0), end: Offset(0.0, 0))
+            .chain(CurveTween(curve: Curves.bounceOut)),
+        weight: 20,
+      ),
+      TweenSequenceItem(
+        tween: Tween<Offset>(begin: Offset(0.0, 0), end: Offset(0.15, 0))
+            .chain(CurveTween(curve: Curves.bounceOut)),
+        weight: 10,
+      ),
+      TweenSequenceItem(
+        tween: Tween<Offset>(begin: Offset(0.15, 0), end: Offset(0.0, 0))
+            .chain(CurveTween(curve: Curves.bounceOut)),
+        weight: 10,
+      ),
+    ]).animate(
+      CurvedAnimation(
+        parent: _animationController,
+        curve: Curves.easeInOut,
+      ),
+    );
+
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      _animationController.forward();
+    });
+
     _route();
   }
 
   @override
   void dispose() {
+    _animationController.dispose();
     super.dispose();
-
     _onConnectivityChanged.cancel();
   }
 
@@ -141,26 +197,44 @@ class _SplashScreenState extends State<SplashScreen> {
                 Container(
                   width: MediaQuery.of(context).size.width,
                   height: MediaQuery.of(context).size.height,
-                  color: Provider.of<ThemeProvider>(context).darkTheme
-                      ? Colors.black
-                      : ColorResources.getPrimary(context),
+                  color: Colors.black,
+                  // color: Provider.of<ThemeProvider>(context).darkTheme
+                  //     ? Colors.black
+                  //     : ColorResources.getPrimary(context),
                   child: CustomPaint(
                     painter: SplashPainter(),
                   ),
                 ),
-                Center(
-                  child: Column(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      Image.asset(
-                        Images.splashScreenLogo,
-                        height: 250.0,
-                        fit: BoxFit.scaleDown,
-                        width: 250.0,
-                      ),
-                    ],
+                AnimatedBuilder(
+                  animation: _animationController,
+                  builder: (BuildContext context, Widget child) {
+                    return SlideTransition(
+                      position: _animationSlide,
+                      child: child,
+                    );
+                  },
+                  child: Center(
+                    child: Image.asset(
+                      Images.splashScreenLogo,
+                      height: 250.0,
+                      fit: BoxFit.scaleDown,
+                      width: 250.0,
+                    ),
                   ),
                 ),
+                // Center(
+                //   child: Column(
+                //     mainAxisSize: MainAxisSize.min,
+                //     children: [
+                //       Image.asset(
+                //         Images.splashScreenLogo,
+                //         height: 250.0,
+                //         fit: BoxFit.scaleDown,
+                //         width: 250.0,
+                //       ),
+                //     ],
+                //   ),
+                // ),
               ],
             )
           : NoInternetOrDataScreen(isNoInternet: true, child: SplashScreen()),

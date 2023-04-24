@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_sixvalley_ecommerce/utill/custom_themes.dart';
+import 'package:flutter_buymaster_user_app/utill/custom_themes.dart';
 
 class SingleTextAlertDialog extends StatelessWidget {
   final String message;
@@ -9,7 +9,8 @@ class SingleTextAlertDialog extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Dialog(
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)), //this right here
+      shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(10.0)), //this right here
       child: Container(
         height: 50,
         alignment: Alignment.center,

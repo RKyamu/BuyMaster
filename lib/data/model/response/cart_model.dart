@@ -1,4 +1,5 @@
-import 'package:flutter_sixvalley_ecommerce/data/model/response/product_model.dart';
+import 'package:flutter_buymaster_user_app/data/model/response/product_model.dart';
+
 class CartModel {
   int _id;
   int _productId;
@@ -24,19 +25,42 @@ class CartModel {
   String _shopInfo;
   List<ChoiceOptions> _choiceOptions;
   List<int> _variationIndexes;
-  double  _shippingCost;
+  double _shippingCost;
   String _shippingType;
   int _minimumOrderQuantity;
   ProductInfo _productInfo;
   String _productType;
   String _slug;
 
-
-
   CartModel(
-      this._id,this._productId, this._thumbnail, this._name, this._seller, this._price, this._discountedPrice, this._quantity, this._maxQuantity, this._variant, this._color,
-      this._variation, this._discount, this._discountType, this._tax, this._taxType, this.shippingMethodId, this._cartGroupId,this._sellerId, this._sellerIs,
-      this._image, this._shopInfo, this._choiceOptions, this._variationIndexes, this._shippingCost, this._minimumOrderQuantity, this._productType, this._slug);
+      this._id,
+      this._productId,
+      this._thumbnail,
+      this._name,
+      this._seller,
+      this._price,
+      this._discountedPrice,
+      this._quantity,
+      this._maxQuantity,
+      this._variant,
+      this._color,
+      this._variation,
+      this._discount,
+      this._discountType,
+      this._tax,
+      this._taxType,
+      this.shippingMethodId,
+      this._cartGroupId,
+      this._sellerId,
+      this._sellerIs,
+      this._image,
+      this._shopInfo,
+      this._choiceOptions,
+      this._variationIndexes,
+      this._shippingCost,
+      this._minimumOrderQuantity,
+      this._productType,
+      this._slug);
 
   String get variant => _variant;
   String get color => _color;
@@ -47,6 +71,7 @@ class CartModel {
   set quantity(int value) {
     _quantity = value;
   }
+
   int get maxQuantity => _maxQuantity;
   double get price => _price;
   double get discountedPrice => _discountedPrice;
@@ -66,14 +91,12 @@ class CartModel {
   String get shopInfo => _shopInfo;
   List<ChoiceOptions> get choiceOptions => _choiceOptions;
   List<int> get variationIndexes => _variationIndexes;
-  double get  shippingCost => _shippingCost;
-  String get  shippingType => _shippingType;
-  int get  minimumOrderQuantity => _minimumOrderQuantity;
+  double get shippingCost => _shippingCost;
+  String get shippingType => _shippingType;
+  int get minimumOrderQuantity => _minimumOrderQuantity;
   ProductInfo get productInfo => _productInfo;
-  String get productType =>_productType;
+  String get productType => _productType;
   String get slug => _slug;
-
-
 
   CartModel.fromJson(Map<String, dynamic> json) {
     _id = json['id'];
@@ -90,7 +113,9 @@ class CartModel {
     _maxQuantity = json['max_quantity'];
     _variant = json['variant'];
     _color = json['color'];
-    _variation = json['variation'] != null ? Variation.fromJson(json['variation']) : null;
+    _variation = json['variation'] != null
+        ? Variation.fromJson(json['variation'])
+        : null;
     _discount = json['discount'].toDouble();
     _discountType = json['discount_type'];
     _tax = json['tax'].toDouble();
@@ -100,22 +125,24 @@ class CartModel {
     _shopInfo = json['shop_info'];
     if (json['choice_options'] != null) {
       _choiceOptions = [];
-      json['choice_options'].forEach((v) {_choiceOptions.add(new ChoiceOptions.fromJson(v));
+      json['choice_options'].forEach((v) {
+        _choiceOptions.add(new ChoiceOptions.fromJson(v));
       });
     }
-    _variationIndexes = json['variation_indexes'] != null ? json['variation_indexes'].cast<int>() : [];
-    if(json['shipping_cost'] != null){
-      _shippingCost =double.parse(json['shipping_cost'].toString());
+    _variationIndexes = json['variation_indexes'] != null
+        ? json['variation_indexes'].cast<int>()
+        : [];
+    if (json['shipping_cost'] != null) {
+      _shippingCost = double.parse(json['shipping_cost'].toString());
     }
-    if(json['shipping_type'] != null){
+    if (json['shipping_type'] != null) {
       _shippingType = json['shipping_type'];
     }
-    _productInfo = json['product'] != null ? new ProductInfo.fromJson(json['product']) : null;
+    _productInfo = json['product'] != null
+        ? new ProductInfo.fromJson(json['product'])
+        : null;
     _productType = json['product_type'];
     _slug = json['slug'];
-
-
-
   }
 
   Map<String, dynamic> toJson() {
@@ -143,14 +170,14 @@ class CartModel {
     data['seller_is'] = this._sellerIs;
     data['shop_info'] = this._shopInfo;
     if (this._choiceOptions != null) {
-      data['choice_options'] = this._choiceOptions.map((v) => v.toJson()).toList();
+      data['choice_options'] =
+          this._choiceOptions.map((v) => v.toJson()).toList();
     }
     data['variation_indexes'] = this._variationIndexes;
     data['shipping_cost'] = this._shippingCost;
     data['_shippingType'] = this._shippingType;
     data['product_type'] = this._productType;
     data['slug'] = this._slug;
-
 
     return data;
   }
@@ -160,13 +187,13 @@ class ProductInfo {
   int minimumOrderQty;
   int totalCurrentStock;
 
-  ProductInfo({ this.minimumOrderQty, this.totalCurrentStock});
+  ProductInfo({this.minimumOrderQty, this.totalCurrentStock});
 
   ProductInfo.fromJson(Map<String, dynamic> json) {
-    if(json['minimum_order_qty'] != null) {
-      try{
+    if (json['minimum_order_qty'] != null) {
+      try {
         minimumOrderQty = json['minimum_order_qty'];
-      }catch(e){
+      } catch (e) {
         minimumOrderQty = int.parse(json['minimum_order_qty'].toString());
       }
     }
@@ -180,4 +207,3 @@ class ProductInfo {
     return data;
   }
 }
-

@@ -4,9 +4,9 @@ import 'package:dio/dio.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
-import 'package:flutter_sixvalley_ecommerce/view/screen/order/order_details_screen.dart';
-import 'package:flutter_sixvalley_ecommerce/main.dart';
-import 'package:flutter_sixvalley_ecommerce/utill/app_constants.dart';
+import 'package:flutter_buymaster_user_app/view/screen/order/order_details_screen.dart';
+import 'package:flutter_buymaster_user_app/main.dart';
+import 'package:flutter_buymaster_user_app/utill/app_constants.dart';
 import 'package:path_provider/path_provider.dart';
 
 class MyNotification {
@@ -21,9 +21,14 @@ class MyNotification {
         onSelectNotification: (String payload) async {
       try {
         if (payload != null && payload.isNotEmpty) {
-          MyApp.navigatorKey.currentState.push(MaterialPageRoute(
+          MyApp.navigatorKey.currentState.push(
+            MaterialPageRoute(
               builder: (context) => OrderDetailsScreen(
-                  orderId: int.parse(payload), orderType: 'default_type')));
+                orderId: int.parse(payload),
+                orderType: 'default_type',
+              ),
+            ),
+          );
         }
       } catch (e) {}
       return;
@@ -40,10 +45,14 @@ class MyNotification {
       try {
         if (message.notification.titleLocKey != null &&
             message.notification.titleLocKey.isNotEmpty) {
-          MyApp.navigatorKey.currentState.push(MaterialPageRoute(
+          MyApp.navigatorKey.currentState.push(
+            MaterialPageRoute(
               builder: (context) => OrderDetailsScreen(
-                  orderId: int.parse(message.notification.titleLocKey),
-                  orderType: 'default_type')));
+                orderId: int.parse(message.notification.titleLocKey),
+                orderType: 'default_type',
+              ),
+            ),
+          );
         }
       } catch (e) {}
     });

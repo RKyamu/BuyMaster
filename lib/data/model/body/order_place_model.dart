@@ -1,5 +1,5 @@
-import 'package:flutter_sixvalley_ecommerce/data/model/response/cart_model.dart';
-import 'package:flutter_sixvalley_ecommerce/data/model/response/product_model.dart';
+import 'package:flutter_buymaster_user_app/data/model/response/cart_model.dart';
+import 'package:flutter_buymaster_user_app/data/model/response/product_model.dart';
 
 class OrderPlaceModel {
   CustomerInfo _customerInfo;
@@ -7,11 +7,8 @@ class OrderPlaceModel {
   String _paymentMethod;
   double _discount;
 
-  OrderPlaceModel(
-      CustomerInfo customerInfo,
-        List<CartModel> cart,
-        String paymentMethod,
-        double discount) {
+  OrderPlaceModel(CustomerInfo customerInfo, List<CartModel> cart,
+      String paymentMethod, double discount) {
     this._customerInfo = customerInfo;
     this._cart = cart;
     this._paymentMethod = paymentMethod;
@@ -58,7 +55,8 @@ class CustomerInfo {
   String _billingAddress;
   String _orderNote;
 
-  CustomerInfo(String addressId, String shippingAddress, String billingId, String billingAddress, String orderNote) {
+  CustomerInfo(String addressId, String shippingAddress, String billingId,
+      String billingAddress, String orderNote) {
     this._addressId = addressId;
     this._shippingAddress = shippingAddress;
     this._addressId = billingId;
@@ -78,7 +76,6 @@ class CustomerInfo {
     _billingId = json['billing_address_id'];
     _billingAddress = json['billing_address_data'];
     _orderNote = json['order_note'];
-
   }
 
   Map<String, dynamic> toJson() {
@@ -107,14 +104,14 @@ class Cart {
   Cart(
       String id,
       double tax,
-        int quantity,
-        double price,
-        double discount,
-        String discountType,
-        int shippingMethodId,
-        String variant,
-        List<Variation> variation,
-        double shippingCost) {
+      int quantity,
+      double price,
+      double discount,
+      String discountType,
+      int shippingMethodId,
+      String variant,
+      List<Variation> variation,
+      double shippingCost) {
     this._id = id;
     this._tax = tax;
     this._quantity = quantity;

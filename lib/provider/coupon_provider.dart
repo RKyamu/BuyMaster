@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_sixvalley_ecommerce/data/model/response/base/api_response.dart';
-import 'package:flutter_sixvalley_ecommerce/data/model/response/coupon_model.dart';
-import 'package:flutter_sixvalley_ecommerce/data/repository/coupon_repo.dart';
-import 'package:flutter_sixvalley_ecommerce/helper/price_converter.dart';
-import 'package:flutter_sixvalley_ecommerce/localization/language_constrants.dart';
-import 'package:flutter_sixvalley_ecommerce/view/basewidget/show_custom_snakbar.dart';
+import 'package:flutter_buymaster_user_app/data/model/response/base/api_response.dart';
+import 'package:flutter_buymaster_user_app/data/model/response/coupon_model.dart';
+import 'package:flutter_buymaster_user_app/data/repository/coupon_repo.dart';
+import 'package:flutter_buymaster_user_app/helper/price_converter.dart';
+import 'package:flutter_buymaster_user_app/localization/language_constrants.dart';
+import 'package:flutter_buymaster_user_app/view/basewidget/show_custom_snakbar.dart';
 
 class CouponProvider extends ChangeNotifier {
   final CouponRepo couponRepo;
@@ -19,23 +19,28 @@ class CouponProvider extends ChangeNotifier {
   String _couponCode = '';
   String get couponCode => _couponCode;
 
-  Future<void> initCoupon(BuildContext context,String coupon, double order) async {
+  Future<void> initCoupon(
+      BuildContext context, String coupon, double order) async {
     _isLoading = true;
     _discount = 0;
     notifyListeners();
     ApiResponse apiResponse = await couponRepo.getCoupon(coupon);
-    if (apiResponse.response != null  && apiResponse.response.statusCode == 200) {
+    if (apiResponse.response != null &&
+        apiResponse.response.statusCode == 200) {
       _isLoading = false;
       _couponCode = coupon;
       Map map = apiResponse.response.data;
       String dis = map['coupon_discount'].toString();
       print('=========>$dis');
-      if(map['coupon_discount'] !=null){
+      if (map['coupon_discount'] != null) {
         _discount = double.parse(dis);
       }
-      showCustomSnackBar('${getTranslated('you_got', context)} '
+      showCustomSnackBar(
+          '${getTranslated('you_got', context)} '
           '${PriceConverter.convertPrice(context, _discount)} '
-          '${getTranslated('discount', context)}', context, isError: false);
+          '${getTranslated('discount', context)}',
+          context,
+          isError: false);
     } else {
       showCustomSnackBar(apiResponse.response.data, context, isToaster: true);
     }

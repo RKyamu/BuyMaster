@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_sixvalley_ecommerce/localization/language_constrants.dart';
-import 'package:flutter_sixvalley_ecommerce/utill/color_resources.dart';
-import 'package:flutter_sixvalley_ecommerce/utill/custom_themes.dart';
-import 'package:flutter_sixvalley_ecommerce/utill/dimensions.dart';
-import 'package:flutter_sixvalley_ecommerce/utill/images.dart';
+import 'package:flutter_buymaster_user_app/localization/language_constrants.dart';
+import 'package:flutter_buymaster_user_app/utill/color_resources.dart';
+import 'package:flutter_buymaster_user_app/utill/custom_themes.dart';
+import 'package:flutter_buymaster_user_app/utill/dimensions.dart';
+import 'package:flutter_buymaster_user_app/utill/images.dart';
 
 class CouponView extends StatelessWidget {
   @override
@@ -19,13 +19,19 @@ class CouponView extends StatelessWidget {
             child: Container(
               height: 70,
               alignment: Alignment.center,
-              child: Column(mainAxisSize: MainAxisSize.min, crossAxisAlignment: CrossAxisAlignment.start, children: [
-                Text('10% COUPON', style: titilliumBold.copyWith(
-                  fontSize: Dimensions.FONT_SIZE_OVER_LARGE,
-                  color: ColorResources.WHITE,
-                )),
-                Text('New User Only', style: robotoRegular.copyWith(color: ColorResources.WHITE)),
-              ]),
+              child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text('10% COUPON',
+                        style: titilliumBold.copyWith(
+                          fontSize: Dimensions.FONT_SIZE_OVER_LARGE,
+                          color: ColorResources.WHITE,
+                        )),
+                    Text('New User Only',
+                        style: robotoRegular.copyWith(
+                            color: ColorResources.WHITE)),
+                  ]),
             ),
           ),
           Expanded(
@@ -40,8 +46,12 @@ class CouponView extends StatelessWidget {
                   width: 70,
                   margin: EdgeInsets.only(right: 10),
                   alignment: Alignment.center,
-                  decoration: BoxDecoration(borderRadius: BorderRadius.circular(50), color: ColorResources.WHITE),
-                  child: Text(getTranslated('grab_now', context), style: titilliumRegular.copyWith(fontSize: Dimensions.FONT_SIZE_EXTRA_SMALL)),
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(50),
+                      color: ColorResources.WHITE),
+                  child: Text(getTranslated('grab_now', context),
+                      style: titilliumRegular.copyWith(
+                          fontSize: Dimensions.FONT_SIZE_EXTRA_SMALL)),
                 ),
               ),
             ),

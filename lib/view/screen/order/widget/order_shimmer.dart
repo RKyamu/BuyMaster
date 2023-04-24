@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_sixvalley_ecommerce/utill/color_resources.dart';
-import 'package:flutter_sixvalley_ecommerce/utill/dimensions.dart';
+import 'package:flutter_buymaster_user_app/utill/color_resources.dart';
+import 'package:flutter_buymaster_user_app/utill/dimensions.dart';
 import 'package:shimmer/shimmer.dart';
 
 class OrderShimmer extends StatelessWidget {
@@ -36,9 +36,11 @@ class OrderShimmer extends StatelessWidget {
                           SizedBox(height: 10),
                           Row(
                             children: [
-                              Container(height: 10, width: 70, color: Colors.white),
+                              Container(
+                                  height: 10, width: 70, color: Colors.white),
                               SizedBox(width: 10),
-                              Container(height: 10, width: 20, color: Colors.white),
+                              Container(
+                                  height: 10, width: 20, color: Colors.white),
                             ],
                           ),
                         ],

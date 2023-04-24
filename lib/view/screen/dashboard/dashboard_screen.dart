@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_sixvalley_ecommerce/helper/network_info.dart';
-import 'package:flutter_sixvalley_ecommerce/provider/splash_provider.dart';
-import 'package:flutter_sixvalley_ecommerce/view/screen/chat/inbox_screen.dart';
-import 'package:flutter_sixvalley_ecommerce/localization/language_constrants.dart';
-import 'package:flutter_sixvalley_ecommerce/utill/images.dart';
-import 'package:flutter_sixvalley_ecommerce/view/screen/home/home_screens.dart';
-import 'package:flutter_sixvalley_ecommerce/view/screen/more/more_screen.dart';
-import 'package:flutter_sixvalley_ecommerce/view/screen/notification/notification_screen.dart';
-import 'package:flutter_sixvalley_ecommerce/view/screen/order/order_screen.dart';
+import 'package:flutter/services.dart';
+import 'package:flutter_buymaster_user_app/helper/network_info.dart';
+import 'package:flutter_buymaster_user_app/provider/splash_provider.dart';
+import 'package:flutter_buymaster_user_app/view/screen/chat/inbox_screen.dart';
+import 'package:flutter_buymaster_user_app/localization/language_constrants.dart';
+import 'package:flutter_buymaster_user_app/utill/images.dart';
+import 'package:flutter_buymaster_user_app/view/screen/home/home_screens.dart';
+import 'package:flutter_buymaster_user_app/view/screen/more/more_screen.dart';
+import 'package:flutter_buymaster_user_app/view/screen/notification/notification_screen.dart';
+import 'package:flutter_buymaster_user_app/view/screen/order/order_screen.dart';
 import 'package:provider/provider.dart';
 
 class DashBoardScreen extends StatefulWidget {
@@ -51,6 +52,11 @@ class _DashBoardScreenState extends State<DashBoardScreen> {
 
   @override
   Widget build(BuildContext context) {
+    SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
+      statusBarColor:
+          Theme.of(context).primaryColor, // Change status bar color here
+    ));
+
     return WillPopScope(
       onWillPop: () async {
         if (_pageIndex != 0) {
@@ -66,6 +72,8 @@ class _DashBoardScreenState extends State<DashBoardScreen> {
           selectedItemColor: Theme.of(context).primaryColor,
           unselectedItemColor: Theme.of(context).textTheme.bodyText1.color,
           showUnselectedLabels: true,
+          selectedFontSize: 10,
+          unselectedFontSize: 10,
           currentIndex: _pageIndex,
           type: BottomNavigationBarType.fixed,
           items: _getBottomWidget(singleVendor),

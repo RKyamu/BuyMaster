@@ -1,5 +1,5 @@
 import 'package:flutter/cupertino.dart';
-import 'package:flutter_sixvalley_ecommerce/utill/images.dart';
+import 'package:flutter_buymaster_user_app/utill/images.dart';
 
 class CustomImage extends StatelessWidget {
   final String image;
@@ -7,15 +7,24 @@ class CustomImage extends StatelessWidget {
   final double width;
   final BoxFit fit;
   final String placeholder;
-  CustomImage({@required this.image, this.height, this.width, this.fit = BoxFit.cover, this.placeholder = Images.placeholder});
+  CustomImage(
+      {@required this.image,
+      this.height,
+      this.width,
+      this.fit = BoxFit.cover,
+      this.placeholder = Images.placeholder});
 
   @override
   Widget build(BuildContext context) {
     return FadeInImage.assetNetwork(
-      placeholder: Images.placeholder, image: image, fit: BoxFit.contain,
+      placeholder: Images.placeholder,
+      image: image,
+      fit: BoxFit.contain,
       imageErrorBuilder: (c, o, s) => Image.asset(
-        Images.placeholder, height: height,
-        width: width, fit: BoxFit.cover,
+        Images.placeholder,
+        height: height,
+        width: width,
+        fit: BoxFit.cover,
       ),
     );
   }

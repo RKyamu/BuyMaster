@@ -63,17 +63,18 @@ Future<void> main() async {
   await initUniLinks();
   if (kIsWeb) {
     await Firebase.initializeApp(
-        options: const FirebaseOptions(
-      apiKey: "AIzaSyA4Ive3p0NmH8D63KrrPKUrcgV-FNWzR2c",
-      authDomain: "buy-master-multi-vendor.firebaseapp.com",
-      databaseURL:
-          "https://buy-master-multi-vendor-default-rtdb.firebaseio.com",
-      projectId: "buy-master-multi-vendor",
-      storageBucket: "buy-master-multi-vendor.appspot.com",
-      messagingSenderId: "890542118180",
-      appId: "1:890542118180:web:eab2652a3f5f8c812ccfb1",
-      measurementId: "G-K68394082S",
-    ));
+      options: const FirebaseOptions(
+        apiKey: "AIzaSyA4Ive3p0NmH8D63KrrPKUrcgV-FNWzR2c",
+        authDomain: "buy-master-multi-vendor.firebaseapp.com",
+        databaseURL:
+            "https://buy-master-multi-vendor-default-rtdb.firebaseio.com",
+        projectId: "buy-master-multi-vendor",
+        storageBucket: "buy-master-multi-vendor.appspot.com",
+        messagingSenderId: "890542118180",
+        appId: "1:890542118180:web:eab2652a3f5f8c812ccfb1",
+        measurementId: "G-K68394082S",
+      ),
+    );
   }
 
   //Remove this method to stop OneSignal Debugging

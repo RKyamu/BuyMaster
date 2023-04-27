@@ -1,4 +1,4 @@
-package com.jellysoft.buymaster
+package com.jellysoft.ebasket
 
 import io.flutter.embedding.android.FlutterActivity
 

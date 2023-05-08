@@ -1,10 +1,10 @@
-# flutter_sixvalley_ecommerce
+# Buymaster user app
 
 A new Flutter setup application for starting a project.
 
 ## Getting Started
 
-This project is a starting point for a Flutter application.
+This project is a starting point for a Flutter application and Ph website.
 
 A few resources to get you started if this is your first Flutter project:
 

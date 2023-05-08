@@ -72,13 +72,15 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
     return WillPopScope(
       onWillPop: () async {
         dispose();
-        widget.isNotification
-            ? Navigator.of(context).pushReplacement(
-                MaterialPageRoute(
-                  builder: (BuildContext context) => DashBoardScreen(),
-                ),
-              )
-            : Navigator.pop(context);
+        if (widget.isNotification) {
+          Navigator.of(context).pushReplacement(
+            MaterialPageRoute(
+              builder: (BuildContext context) => DashBoardScreen(),
+            ),
+          );
+        } else {
+          Navigator.pop(context);
+        }
         return true;
       },
       child: Scaffold(
@@ -88,13 +90,16 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
           backgroundColor: Theme.of(context).cardColor,
           leading: InkWell(
             onTap: () {
-              widget.isNotification
-                  ? Navigator.of(context).pushReplacement(
-                      MaterialPageRoute(
-                        builder: (BuildContext context) => DashBoardScreen(),
-                      ),
-                    )
-                  : Navigator.pop(context);
+              dispose();
+              if (widget.isNotification) {
+                Navigator.of(context).pushReplacement(
+                  MaterialPageRoute(
+                    builder: (BuildContext context) => DashBoardScreen(),
+                  ),
+                );
+              } else {
+                Navigator.pop(context);
+              }
             },
             child: Icon(Icons.keyboard_backspace),
           ),

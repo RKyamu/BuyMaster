@@ -5,7 +5,7 @@ import 'package:provider/provider.dart';
 class ColorResources {
   static Color getColombiaBlue(BuildContext context) {
     return Provider.of<ThemeProvider>(context).darkTheme
-        ? Color(0xFF678cb5)
+        ? Color.fromRGBO(103, 140, 181, 1)
         : Color(0xFF92C6FF);
   }
 

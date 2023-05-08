@@ -62,7 +62,7 @@ class _OrderScreenState extends State<OrderScreen> {
                             ),
                             SizedBox(width: Dimensions.PADDING_SIZE_SMALL),
                             OrderTypeButton(
-                              text: getTranslated('CANCELED', context),
+                              text: getTranslated('returned', context),
                               index: 2,
                               orderList: orderProvider.canceledList,
                             ),

@@ -11,11 +11,13 @@ import 'package:flutter_buymaster_user_app/utill/images.dart';
 import 'package:flutter_buymaster_user_app/view/basewidget/button/custom_button.dart';
 import 'package:flutter_buymaster_user_app/view/basewidget/custom_app_bar.dart';
 import 'package:flutter_buymaster_user_app/view/basewidget/textfield/custom_textfield.dart';
+import 'package:flutter_buymaster_user_app/view/screen/order/order_screen.dart';
 import 'package:provider/provider.dart';
 
 class RefundBottomSheet extends StatefulWidget {
   final Product product;
   final int orderDetailsId;
+  var isClicked = false;
   RefundBottomSheet({@required this.product, @required this.orderDetailsId});
 
   @override
@@ -24,6 +26,12 @@ class RefundBottomSheet extends StatefulWidget {
 
 class _RefundBottomSheetState extends State<RefundBottomSheet> {
   final TextEditingController _refundReasonController = TextEditingController();
+
+  @override
+  void dispose() {
+    Provider.of<OrderProvider>(context).setOrderDetails();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -311,49 +319,60 @@ class _RefundBottomSheetState extends State<RefundBottomSheet> {
                                   )),
                             ),
                           ),
-                          CustomButton(
-                            buttonText: getTranslated('submit', context),
-                            onTap: () {
-                              String reason = _refundReasonController.text
-                                  .trim()
-                                  .toString();
-                              if (reason.isEmpty) {
-                                ScaffoldMessenger.of(context)
-                                    .showSnackBar(SnackBar(
-                                  behavior: SnackBarBehavior.floating,
-                                  content: Text(getTranslated(
-                                      'reason_required', context)),
-                                  backgroundColor:
-                                      Theme.of(context).primaryColor,
-                                ));
-                              } else {
-                                refundReq
-                                    .refundRequest(
-                                        context,
-                                        widget.orderDetailsId,
-                                        refundReq.refundInfoModel.refund
-                                            .refundAmount,
-                                        reason,
-                                        Provider.of<AuthProvider>(context,
-                                                listen: false)
-                                            .getUserToken())
-                                    .then((value) {
-                                  if (value.statusCode == 200) {
-                                    refundReq.getRefundReqInfo(
-                                        context, widget.orderDetailsId);
-                                    ScaffoldMessenger.of(context)
-                                        .showSnackBar(SnackBar(
-                                      content: Text(getTranslated(
-                                          'successfully_requested_for_refund',
-                                          context)),
-                                      backgroundColor: Colors.green,
-                                    ));
-                                    Navigator.pop(context);
-                                  }
-                                });
-                              }
-                            },
-                          ),
+                          !widget.isClicked
+                              ? CustomButton(
+                                  buttonText: getTranslated('submit', context),
+                                  onTap: () {
+                                    String reason = _refundReasonController.text
+                                        .trim()
+                                        .toString();
+                                    if (reason.isEmpty) {
+                                      ScaffoldMessenger.of(context)
+                                          .showSnackBar(SnackBar(
+                                        behavior: SnackBarBehavior.floating,
+                                        content: Text(getTranslated(
+                                            'reason_required', context)),
+                                        backgroundColor:
+                                            Theme.of(context).primaryColor,
+                                      ));
+                                    } else {
+                                      setState(() {
+                                        widget.isClicked = true;
+                                      });
+                                      refundReq
+                                          .refundRequest(
+                                              context,
+                                              widget.orderDetailsId,
+                                              refundReq.refundInfoModel.refund
+                                                  .refundAmount,
+                                              reason,
+                                              Provider.of<AuthProvider>(context,
+                                                      listen: false)
+                                                  .getUserToken())
+                                          .then((value) {
+                                        if (value.statusCode == 200) {
+                                          refundReq.getRefundReqInfo(
+                                              context, widget.orderDetailsId);
+                                          ScaffoldMessenger.of(context)
+                                              .showSnackBar(SnackBar(
+                                            content: Text(getTranslated(
+                                                'successfully_requested_for_refund',
+                                                context)),
+                                            backgroundColor: Colors.green,
+                                          ));
+                                          dispose();
+                                          Navigator.of(context).pushReplacement(
+                                            MaterialPageRoute(
+                                              builder: (BuildContext context) =>
+                                                  OrderScreen(),
+                                            ),
+                                          );
+                                        }
+                                      });
+                                    }
+                                  },
+                                )
+                              : Center(child: CircularProgressIndicator()),
                         ]),
                   ),
                 );

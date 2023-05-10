@@ -147,189 +147,189 @@ class _AddNewAddressScreenState extends State<AddNewAddressScreen> {
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                Container(
-                                  height: 126,
-                                  width: MediaQuery.of(context).size.width,
-                                  child: ClipRRect(
-                                    borderRadius: BorderRadius.circular(
-                                        Dimensions.PADDING_SIZE_SMALL),
-                                    child: Stack(
-                                      clipBehavior: Clip.none,
-                                      children: [
-                                        GoogleMap(
-                                          mapType: MapType.normal,
-                                          initialCameraPosition: CameraPosition(
-                                            target: widget.isEnableUpdate
-                                                ? LatLng(
-                                                    double.parse(widget.address
-                                                            .latitude) ??
-                                                        0.0,
-                                                    double.parse(widget.address
-                                                            .longitude) ??
-                                                        0.0)
-                                                : LatLng(
-                                                    locationProvider.position
-                                                            .latitude ??
-                                                        0.0,
-                                                    locationProvider.position
-                                                            .longitude ??
-                                                        0.0),
-                                            zoom: 17,
-                                          ),
-                                          onTap: (latLng) {
-                                            Navigator.of(context).push(
-                                                MaterialPageRoute(
-                                                    builder: (BuildContext
-                                                            context) =>
-                                                        SelectLocationScreen(
-                                                            googleMapController:
-                                                                _controller)));
-                                          },
-                                          zoomControlsEnabled: false,
-                                          compassEnabled: false,
-                                          indoorViewEnabled: true,
-                                          mapToolbarEnabled: false,
-                                          onCameraIdle: () {
-                                            if (_updateAddress) {
-                                              locationProvider.updatePosition(
-                                                  _cameraPosition,
-                                                  true,
-                                                  null,
-                                                  context);
-                                            } else {
-                                              _updateAddress = true;
-                                            }
-                                          },
-                                          onCameraMove: ((_position) =>
-                                              _cameraPosition = _position),
-                                          onMapCreated:
-                                              (GoogleMapController controller) {
-                                            _controller = controller;
-                                            if (!widget.isEnableUpdate &&
-                                                _controller != null) {
-                                              Provider.of<LocationProvider>(
-                                                      context,
-                                                      listen: false)
-                                                  .getCurrentLocation(
-                                                      context, true,
-                                                      mapController:
-                                                          _controller);
-                                            }
-                                          },
-                                        ),
-                                        locationProvider.loading
-                                            ? Center(
-                                                child: CircularProgressIndicator(
-                                                    valueColor:
-                                                        AlwaysStoppedAnimation<
-                                                                Color>(
-                                                            Theme.of(context)
-                                                                .primaryColor)))
-                                            : SizedBox(),
-                                        Container(
-                                            width: MediaQuery.of(context)
-                                                .size
-                                                .width,
-                                            alignment: Alignment.center,
-                                            height: MediaQuery.of(context)
-                                                .size
-                                                .height,
-                                            child: Icon(
-                                              Icons.location_on,
-                                              size: 40,
-                                              color: Theme.of(context)
-                                                  .primaryColor,
-                                            )),
-                                        Positioned(
-                                          bottom: 10,
-                                          right: 0,
-                                          child: InkWell(
-                                            onTap: () {
-                                              _checkPermission(
-                                                  () => locationProvider
-                                                      .getCurrentLocation(
-                                                          context, true,
-                                                          mapController:
-                                                              _controller),
-                                                  context);
-                                            },
-                                            child: Container(
-                                              width: 30,
-                                              height: 30,
-                                              margin: EdgeInsets.only(
-                                                  right: Dimensions
-                                                      .PADDING_SIZE_LARGE),
-                                              decoration: BoxDecoration(
-                                                borderRadius: BorderRadius
-                                                    .circular(Dimensions
-                                                        .PADDING_SIZE_SMALL),
-                                                color:
-                                                    ColorResources.getChatIcon(
-                                                        context),
-                                              ),
-                                              child: Icon(
-                                                Icons.my_location,
-                                                color: Theme.of(context)
-                                                    .primaryColor,
-                                                size: 20,
-                                              ),
-                                            ),
-                                          ),
-                                        ),
-                                        Positioned(
-                                          top: 10,
-                                          right: 0,
-                                          child: InkWell(
-                                            onTap: () {
-                                              Navigator.of(context).push(
-                                                  MaterialPageRoute(
-                                                      builder: (BuildContext
-                                                              context) =>
-                                                          SelectLocationScreen(
-                                                              googleMapController:
-                                                                  _controller)));
-                                            },
-                                            child: Container(
-                                              width: 30,
-                                              height: 30,
-                                              margin: EdgeInsets.only(
-                                                  right: Dimensions
-                                                      .PADDING_SIZE_LARGE),
-                                              decoration: BoxDecoration(
-                                                borderRadius: BorderRadius
-                                                    .circular(Dimensions
-                                                        .PADDING_SIZE_SMALL),
-                                                color: Colors.white,
-                                              ),
-                                              child: Icon(
-                                                Icons.fullscreen,
-                                                color: Theme.of(context)
-                                                    .primaryColor,
-                                                size: 20,
-                                              ),
-                                            ),
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                ),
-                                Padding(
-                                  padding: const EdgeInsets.only(top: 10),
-                                  child: Center(
-                                      child: Text(
-                                    getTranslated(
-                                        'add_the_location_correctly', context),
-                                    style: Theme.of(context)
-                                        .textTheme
-                                        .headline2
-                                        .copyWith(
-                                            color: ColorResources.getTextTitle(
-                                                context),
-                                            fontSize:
-                                                Dimensions.FONT_SIZE_SMALL),
-                                  )),
-                                ),
+                                // Container(
+                                //   height: 126,
+                                //   width: MediaQuery.of(context).size.width,
+                                //   child: ClipRRect(
+                                //     borderRadius: BorderRadius.circular(
+                                //         Dimensions.PADDING_SIZE_SMALL),
+                                //     child: Stack(
+                                //       clipBehavior: Clip.none,
+                                //       children: [
+                                //         GoogleMap(
+                                //           mapType: MapType.normal,
+                                //           initialCameraPosition: CameraPosition(
+                                //             target: widget.isEnableUpdate
+                                //                 ? LatLng(
+                                //                     double.parse(widget.address
+                                //                             .latitude) ??
+                                //                         0.0,
+                                //                     double.parse(widget.address
+                                //                             .longitude) ??
+                                //                         0.0)
+                                //                 : LatLng(
+                                //                     locationProvider.position
+                                //                             .latitude ??
+                                //                         0.0,
+                                //                     locationProvider.position
+                                //                             .longitude ??
+                                //                         0.0),
+                                //             zoom: 17,
+                                //           ),
+                                //           onTap: (latLng) {
+                                //             Navigator.of(context).push(
+                                //                 MaterialPageRoute(
+                                //                     builder: (BuildContext
+                                //                             context) =>
+                                //                         SelectLocationScreen(
+                                //                             googleMapController:
+                                //                                 _controller)));
+                                //           },
+                                //           zoomControlsEnabled: false,
+                                //           compassEnabled: false,
+                                //           indoorViewEnabled: true,
+                                //           mapToolbarEnabled: false,
+                                //           onCameraIdle: () {
+                                //             if (_updateAddress) {
+                                //               locationProvider.updatePosition(
+                                //                   _cameraPosition,
+                                //                   true,
+                                //                   null,
+                                //                   context);
+                                //             } else {
+                                //               _updateAddress = true;
+                                //             }
+                                //           },
+                                //           onCameraMove: ((_position) =>
+                                //               _cameraPosition = _position),
+                                //           onMapCreated:
+                                //               (GoogleMapController controller) {
+                                //             _controller = controller;
+                                //             if (!widget.isEnableUpdate &&
+                                //                 _controller != null) {
+                                //               Provider.of<LocationProvider>(
+                                //                       context,
+                                //                       listen: false)
+                                //                   .getCurrentLocation(
+                                //                       context, true,
+                                //                       mapController:
+                                //                           _controller);
+                                //             }
+                                //           },
+                                //         ),
+                                //         locationProvider.loading
+                                //             ? Center(
+                                //                 child: CircularProgressIndicator(
+                                //                     valueColor:
+                                //                         AlwaysStoppedAnimation<
+                                //                                 Color>(
+                                //                             Theme.of(context)
+                                //                                 .primaryColor)))
+                                //             : SizedBox(),
+                                //         Container(
+                                //             width: MediaQuery.of(context)
+                                //                 .size
+                                //                 .width,
+                                //             alignment: Alignment.center,
+                                //             height: MediaQuery.of(context)
+                                //                 .size
+                                //                 .height,
+                                //             child: Icon(
+                                //               Icons.location_on,
+                                //               size: 40,
+                                //               color: Theme.of(context)
+                                //                   .primaryColor,
+                                //             )),
+                                //         Positioned(
+                                //           bottom: 10,
+                                //           right: 0,
+                                //           child: InkWell(
+                                //             onTap: () {
+                                //               _checkPermission(
+                                //                   () => locationProvider
+                                //                       .getCurrentLocation(
+                                //                           context, true,
+                                //                           mapController:
+                                //                               _controller),
+                                //                   context);
+                                //             },
+                                //             child: Container(
+                                //               width: 30,
+                                //               height: 30,
+                                //               margin: EdgeInsets.only(
+                                //                   right: Dimensions
+                                //                       .PADDING_SIZE_LARGE),
+                                //               decoration: BoxDecoration(
+                                //                 borderRadius: BorderRadius
+                                //                     .circular(Dimensions
+                                //                         .PADDING_SIZE_SMALL),
+                                //                 color:
+                                //                     ColorResources.getChatIcon(
+                                //                         context),
+                                //               ),
+                                //               child: Icon(
+                                //                 Icons.my_location,
+                                //                 color: Theme.of(context)
+                                //                     .primaryColor,
+                                //                 size: 20,
+                                //               ),
+                                //             ),
+                                //           ),
+                                //         ),
+                                //         Positioned(
+                                //           top: 10,
+                                //           right: 0,
+                                //           child: InkWell(
+                                //             onTap: () {
+                                //               Navigator.of(context).push(
+                                //                   MaterialPageRoute(
+                                //                       builder: (BuildContext
+                                //                               context) =>
+                                //                           SelectLocationScreen(
+                                //                               googleMapController:
+                                //                                   _controller)));
+                                //             },
+                                //             child: Container(
+                                //               width: 30,
+                                //               height: 30,
+                                //               margin: EdgeInsets.only(
+                                //                   right: Dimensions
+                                //                       .PADDING_SIZE_LARGE),
+                                //               decoration: BoxDecoration(
+                                //                 borderRadius: BorderRadius
+                                //                     .circular(Dimensions
+                                //                         .PADDING_SIZE_SMALL),
+                                //                 color: Colors.white,
+                                //               ),
+                                //               child: Icon(
+                                //                 Icons.fullscreen,
+                                //                 color: Theme.of(context)
+                                //                     .primaryColor,
+                                //                 size: 20,
+                                //               ),
+                                //             ),
+                                //           ),
+                                //         ),
+                                //       ],
+                                //     ),
+                                //   ),
+                                // ),
+                                // Padding(
+                                //   padding: const EdgeInsets.only(top: 10),
+                                //   child: Center(
+                                //       child: Text(
+                                //     getTranslated(
+                                //         'add_the_location_correctly', context),
+                                //     style: Theme.of(context)
+                                //         .textTheme
+                                //         .headline2
+                                //         .copyWith(
+                                //             color: ColorResources.getTextTitle(
+                                //                 context),
+                                //             fontSize:
+                                //                 Dimensions.FONT_SIZE_SMALL),
+                                //   )),
+                                // ),
 
                                 // for label us
                                 Padding(

@@ -75,8 +75,12 @@ class ProductProvider extends ChangeNotifier {
             .addAll(ProductModel.fromJson(apiResponse.response.data).products);
         _latestPageSize =
             ProductModel.fromJson(apiResponse.response.data).totalSize;
+        int offsetAPI = ProductModel.fromJson(apiResponse.response.data).offset;
+        int limitAPI = ProductModel.fromJson(apiResponse.response.data).limit;
         _filterFirstLoading = false;
         _filterIsLoading = false;
+        print(
+            "latest product - _latestProductList: ${_latestProductList.length} _latestPageSize: ${_latestPageSize} limit: $limitAPI offset: $offsetAPI");
       } else {
         ApiChecker.checkApi(context, apiResponse);
       }

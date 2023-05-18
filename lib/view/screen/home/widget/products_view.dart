@@ -37,7 +37,7 @@ class ProductView extends StatelessWidget {
             productType == ProductType.NEW_ARRIVAL) {
           pageSize = (Provider.of<ProductProvider>(context, listen: false)
                       .latestPageSize /
-                  10)
+                  4)
               .ceil();
           offset = Provider.of<ProductProvider>(context, listen: false).lOffset;
         } else if (productType == ProductType.SELLER_PRODUCT) {
@@ -112,11 +112,14 @@ class ProductView extends StatelessWidget {
           prodProvider.filterIsLoading
               ? Center(
                   child: Padding(
-                  padding: EdgeInsets.all(Dimensions.ICON_SIZE_EXTRA_SMALL),
-                  child: CircularProgressIndicator(
+                    padding: EdgeInsets.all(Dimensions.ICON_SIZE_EXTRA_SMALL),
+                    child: CircularProgressIndicator(
                       valueColor: AlwaysStoppedAnimation<Color>(
-                          Theme.of(context).primaryColor)),
-                ))
+                        Theme.of(context).primaryColor,
+                      ),
+                    ),
+                  ),
+                )
               : SizedBox.shrink(),
         ]);
       },

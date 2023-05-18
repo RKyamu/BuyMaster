@@ -37,21 +37,20 @@ class HomeCategoryProductView extends StatelessWidget {
                                     .homeCategoryProductList[index].name,
                                 onTap: () {
                                   Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                          builder: (_) =>
-                                              BrandAndCategoryProductScreen(
-                                                isBrand: false,
-                                                id: homeCategoryProductProvider
-                                                    .homeCategoryProductList[
-                                                        index]
-                                                    .id
-                                                    .toString(),
-                                                name: homeCategoryProductProvider
-                                                    .homeCategoryProductList[
-                                                        index]
-                                                    .name,
-                                              )));
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (_) =>
+                                          BrandAndCategoryProductScreen(
+                                        isBrand: false,
+                                        id: homeCategoryProductProvider
+                                            .homeCategoryProductList[index].id
+                                            .toString(),
+                                        name: homeCategoryProductProvider
+                                            .homeCategoryProductList[index]
+                                            .name,
+                                      ),
+                                    ),
+                                  );
                                 },
                               ),
                             )

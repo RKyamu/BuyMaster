@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_buymaster_user_app/data/model/response/product_model.dart';
 import 'package:flutter_buymaster_user_app/helper/price_converter.dart';
@@ -61,19 +62,38 @@ class ProductWidget extends StatelessWidget {
               ),
               child: ClipRRect(
                 borderRadius: BorderRadius.only(
-                    topLeft: Radius.circular(10),
-                    topRight: Radius.circular(10)),
-                child: FadeInImage.assetNetwork(
-                  placeholder: Images.placeholder,
+                  topLeft: Radius.circular(10),
+                  topRight: Radius.circular(10),
+                ),
+                child: CachedNetworkImage(
+                  imageUrl:
+                      '${Provider.of<SplashProvider>(context, listen: false).baseUrls.productThumbnailUrl}/${productModel.thumbnail}',
                   fit: BoxFit.cover,
                   height: MediaQuery.of(context).size.width / 2.45,
-                  image:
-                      '${Provider.of<SplashProvider>(context, listen: false).baseUrls.productThumbnailUrl}/${productModel.thumbnail}',
-                  imageErrorBuilder: (c, o, s) => Image.asset(
-                      Images.placeholder_1x1,
+                  errorWidget: (c, o, s) => Image.asset(Images.placeholder_1x1,
                       fit: BoxFit.cover,
                       height: MediaQuery.of(context).size.width / 2.45),
                 ),
+                // child: Image.network(
+                //   '${Provider.of<SplashProvider>(context, listen: false).baseUrls.productThumbnailUrl}/${productModel.thumbnail}',
+                //   fit: BoxFit.cover,
+                //   height: MediaQuery.of(context).size.width / 2.45,
+                //   errorBuilder: (c, o, s) => Image.asset(
+                //       Images.placeholder_1x1,
+                //       fit: BoxFit.cover,
+                //       height: MediaQuery.of(context).size.width / 2.45),
+                // ),
+                // child: FadeInImage.assetNetwork(
+                //   placeholder: Images.placeholder,
+                //   fit: BoxFit.cover,
+                //   height: MediaQuery.of(context).size.width / 2.45,
+                //   image:
+                //       '${Provider.of<SplashProvider>(context, listen: false).baseUrls.productThumbnailUrl}/${productModel.thumbnail}',
+                //   imageErrorBuilder: (c, o, s) => Image.asset(
+                //       Images.placeholder_1x1,
+                //       fit: BoxFit.cover,
+                //       height: MediaQuery.of(context).size.width / 2.45),
+                // ),
               ),
             ),
 

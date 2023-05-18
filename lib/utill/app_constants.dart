@@ -4,6 +4,7 @@ class AppConstants {
   static const String APP_NAME = 'Buy Master';
   static const String APP_VERSION = '1.0';
   static const String BASE_URL = 'https://www.buymaster.in';
+  //'https://jellysoftindia.com/JELLYSOFT/arun/buymaster';
   //'https://srilakshminarasimarlogistics.com/ecommerce';
   //www.buymaster.in
   static const String USER_ID = 'userId';

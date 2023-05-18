@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_buymaster_user_app/utill/color_resources.dart';
+import '/utill/color_resources.dart';
 
 class SplashPainter extends CustomPainter {
   @override
   void paint(Canvas canvas, Size size) {
     var paint = Paint()
-      ..color = Color.fromARGB(255, 0, 0, 0).withOpacity(0.3)
+      ..color = ColorResources.LIGHT_SKY_BLUE.withOpacity(0.3)
       ..style = PaintingStyle.fill
       ..strokeWidth = 2.0;
     var path = Path();

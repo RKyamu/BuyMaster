@@ -61,6 +61,8 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
   bool _cod;
   bool _billingAddress;
 
+  ScrollController _scrollController = ScrollController();
+
   @override
   void initState() {
     super.initState();
@@ -80,6 +82,14 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
             .configModel
             .billingAddress ==
         1;
+  }
+
+  void scrollToTop() {
+    _scrollController.animateTo(
+      0,
+      duration: Duration(milliseconds: 500),
+      curve: Curves.easeInOut,
+    );
   }
 
   @override
@@ -107,6 +117,7 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
                                       .addressIndex ==
                                   null &&
                               !widget.onlyDigital) {
+                                scrollToTop();
                             showCustomSnackBar(
                                 getTranslated(
                                     'select_a_shipping_address', context),
@@ -116,6 +127,7 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
                                       .billingAddressIndex ==
                                   null &&
                               _billingAddress) {
+                                scrollToTop();
                             showCustomSnackBar(
                                 getTranslated(
                                     'select_a_billing_address', context),
@@ -123,7 +135,6 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
                           } else {
                             List<CartModel> _cartList = [];
                             _cartList.addAll(widget.cartList);
-
                             for (int index = 0;
                                 index < widget.cartList.length;
                                 index++) {
@@ -348,6 +359,7 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
             child: ListView(
                 physics: BouncingScrollPhysics(),
                 padding: EdgeInsets.all(0),
+                controller: _scrollController,
                 children: [
                   // Shipping Details
                   Consumer<OrderProvider>(builder: (context, shipping, _) {
@@ -875,28 +887,30 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
                           ),
                           SizedBox(height: Dimensions.PADDING_SIZE_EXTRA_SMALL),
                           Expanded(
-                              child: Row(
-                            children: [
-                              _cod && !widget.onlyDigital
-                                  ? Expanded(
-                                      child: CustomCheckBox(
-                                          title: getTranslated(
-                                              'cash_on_delivery', context),
-                                          index: 0))
-                                  : SizedBox(),
-                              _digitalPayment
-                                  ? Expanded(
-                                      child: Container(
-                                          child: CustomCheckBox(
-                                              title: getTranslated(
-                                                  'digital_payment', context),
-                                              index: !_cod || widget.onlyDigital
-                                                  ? 0
-                                                  : 1)),
-                                    )
-                                  : SizedBox(),
-                            ],
-                          )),
+                            child: Row(
+                              children: [
+                                _cod && !widget.onlyDigital
+                                    ? Expanded(
+                                        child: CustomCheckBox(
+                                            title: getTranslated(
+                                                'cash_on_delivery', context),
+                                            index: 0))
+                                    : SizedBox(),
+                                _digitalPayment
+                                    ? Expanded(
+                                        child: Container(
+                                            child: CustomCheckBox(
+                                                title: getTranslated(
+                                                    'digital_payment', context),
+                                                index:
+                                                    !_cod || widget.onlyDigital
+                                                        ? 0
+                                                        : 1)),
+                                      )
+                                    : SizedBox(),
+                              ],
+                            ),
+                          ),
                         ]),
                   ),
 

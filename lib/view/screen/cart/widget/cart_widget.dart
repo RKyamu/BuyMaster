@@ -23,6 +23,10 @@ class CartWidget extends StatelessWidget {
       @required this.index,
       @required this.fromCheckout});
 
+  double getProductPrice() {
+    return cartModel.quantity * (cartModel.price - cartModel.discount);
+  }
+
   @override
   Widget build(BuildContext context) {
     return InkWell(
@@ -83,14 +87,16 @@ class CartWidget extends StatelessWidget {
                       Row(
                         children: [
                           Expanded(
-                            child: Text(cartModel.name,
-                                maxLines: 1,
-                                overflow: TextOverflow.ellipsis,
-                                style: titilliumBold.copyWith(
-                                  fontSize: Dimensions.FONT_SIZE_DEFAULT,
-                                  color: ColorResources.getReviewRattingColor(
-                                      context),
-                                )),
+                            child: Text(
+                              cartModel.name,
+                              maxLines: 1,
+                              overflow: TextOverflow.ellipsis,
+                              style: titilliumBold.copyWith(
+                                fontSize: Dimensions.FONT_SIZE_DEFAULT,
+                                color: ColorResources.getReviewRattingColor(
+                                    context),
+                              ),
+                            ),
                           ),
                           SizedBox(
                             width: Dimensions.PADDING_SIZE_SMALL,
@@ -112,12 +118,13 @@ class CartWidget extends StatelessWidget {
                                     }
                                   },
                                   child: Container(
-                                      width: 20,
-                                      height: 20,
-                                      child: Image.asset(
-                                        Images.delete,
-                                        scale: .5,
-                                      )),
+                                    width: 20,
+                                    height: 20,
+                                    child: Image.asset(
+                                      Images.delete,
+                                      scale: .5,
+                                    ),
+                                  ),
                                 )
                               : SizedBox.shrink(),
                         ],
@@ -144,8 +151,7 @@ class CartWidget extends StatelessWidget {
                           ),
                           Text(
                             PriceConverter.convertPrice(
-                                context, cartModel.price * cartModel.quantity,
-                                discount: cartModel.discount,
+                                context, getProductPrice(),
                                 discountType: 'amount'),
                             maxLines: 1,
                             overflow: TextOverflow.ellipsis,
@@ -164,13 +170,16 @@ class CartWidget extends StatelessWidget {
                                   top: Dimensions.PADDING_SIZE_EXTRA_SMALL),
                               child: Row(children: [
                                 Flexible(
-                                    child: Text(cartModel.variant,
-                                        style: robotoRegular.copyWith(
-                                          fontSize:
-                                              Dimensions.FONT_SIZE_DEFAULT,
-                                          color: ColorResources
-                                              .getReviewRattingColor(context),
-                                        ))),
+                                  child: Text(
+                                    cartModel.variant,
+                                    style: robotoRegular.copyWith(
+                                      fontSize: Dimensions.FONT_SIZE_DEFAULT,
+                                      color:
+                                          ColorResources.getReviewRattingColor(
+                                              context),
+                                    ),
+                                  ),
+                                ),
                               ]),
                             )
                           : SizedBox(),
@@ -196,12 +205,12 @@ class CartWidget extends StatelessWidget {
                                                 .getReviewRattingColor(
                                                     context))),
                                     Text(
-                                        '${PriceConverter.convertPrice(context, cartModel.shippingCost)}',
-                                        style: robotoRegular.copyWith(
-                                          fontSize: Dimensions.FONT_SIZE_SMALL,
-                                          color:
-                                              Theme.of(context).disabledColor,
-                                        )),
+                                      '${PriceConverter.convertPrice(context, cartModel.shippingCost)}',
+                                      style: robotoRegular.copyWith(
+                                        fontSize: Dimensions.FONT_SIZE_SMALL,
+                                        color: Theme.of(context).disabledColor,
+                                      ),
+                                    ),
                                   ]),
                                 )
                               : SizedBox(),

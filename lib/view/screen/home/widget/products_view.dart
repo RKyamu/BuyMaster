@@ -21,6 +21,7 @@ class ProductView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    print("seller product build");
     int offset = 1;
     scrollController?.addListener(() {
       if (scrollController.position.maxScrollExtent ==
@@ -49,6 +50,7 @@ class ProductView extends StatelessWidget {
               Provider.of<ProductProvider>(context, listen: false).sellerOffset;
         }
         if (offset < pageSize) {
+          print("seller product if block in seller products");
           print('offset =====>$offset and page sige ====>$pageSize');
           offset++;
 
@@ -63,7 +65,9 @@ class ProductView extends StatelessWidget {
             Provider.of<ProductProvider>(context, listen: false)
                 .getLatestProductList(offset, context);
           }
-        } else {}
+        } else {
+          print("seller product else block in seller products");
+        }
       }
     });
 

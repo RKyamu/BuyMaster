@@ -94,6 +94,8 @@ class SearchProvider with ChangeNotifier {
         _filterProductList = [];
         _filterProductList
             .addAll(ProductModel.fromJson(apiResponse.response.data).products);
+        print("searched Products - ${_filterProductList.length}");
+        print("searched Products $_filterProductList");
       }
     } else {
       ApiChecker.checkApi(context, apiResponse);

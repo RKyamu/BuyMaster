@@ -298,30 +298,30 @@ class _ProductDetailsState extends State<ProductDetails> {
                                                 : SizedBox())
                                       ]),
                                 ),
-                                details.productDetailsModel.addedBy == 'seller'
-                                    ? Padding(
-                                        padding: EdgeInsets.all(
-                                            Dimensions.PADDING_SIZE_DEFAULT),
-                                        child: TitleRow(
-                                            title: getTranslated(
-                                                'more_from_the_shop', context),
-                                            isDetailsPage: true),
-                                      )
-                                    : SizedBox(),
-                                details.productDetailsModel.addedBy == 'seller'
-                                    ? Padding(
-                                        padding: EdgeInsets.all(Dimensions
-                                            .PADDING_SIZE_EXTRA_SMALL),
-                                        child: ProductView(
-                                            isHomePage: true,
-                                            productType:
-                                                ProductType.SELLER_PRODUCT,
-                                            scrollController: _scrollController,
-                                            sellerId: details
-                                                .productDetailsModel.userId
-                                                .toString()),
-                                      )
-                                    : SizedBox(),
+                                // details.productDetailsModel.addedBy == 'seller'
+                                //     ? Padding(
+                                //         padding: EdgeInsets.all(
+                                //             Dimensions.PADDING_SIZE_DEFAULT),
+                                //         child: TitleRow(
+                                //             title: getTranslated(
+                                //                 'more_from_the_shop', context),
+                                //             isDetailsPage: true),
+                                //       )
+                                //     : SizedBox(),
+                                // details.productDetailsModel.addedBy == 'seller'
+                                //     ? Padding(
+                                //         padding: EdgeInsets.all(Dimensions
+                                //             .PADDING_SIZE_EXTRA_SMALL),
+                                //         child: ProductView(
+                                //             isHomePage: true,
+                                //             productType:
+                                //                 ProductType.SELLER_PRODUCT,
+                                //             scrollController: _scrollController,
+                                //             sellerId: details
+                                //                 .productDetailsModel.userId
+                                //                 .toString()),
+                                //       )
+                                //     : SizedBox(),
                                 Container(
                                   margin: EdgeInsets.only(
                                       top: Dimensions.PADDING_SIZE_SMALL),

@@ -31,7 +31,7 @@ class _SellerScreenState extends State<SellerScreen> {
   ScrollController _scrollController = ScrollController();
 
   void _load() {
-    Provider.of<ProductProvider>(context, listen: false).removeFirstLoading();
+    // Provider.of<ProductProvider>(context, listen: false).removeFirstLoading();
     Provider.of<ProductProvider>(context, listen: false).clearSellerData();
     Provider.of<ProductProvider>(context, listen: false)
         .initSellerProductList(widget.seller.seller.id.toString(), 1, context);
@@ -135,7 +135,7 @@ class _SellerScreenState extends State<SellerScreen> {
                                       ' ' +
                                       '${getTranslated('reviews', context)}',
                                   style: titleRegular.copyWith(
-                                      fontSize: Dimensions.FONT_SIZE_LARGE,
+                                      fontSize: Dimensions.FONT_SIZE_SMALL,
                                       color:
                                           ColorResources.getReviewRattingColor(
                                               context)),
@@ -152,7 +152,7 @@ class _SellerScreenState extends State<SellerScreen> {
                                       ' ' +
                                       '${getTranslated('products', context)}',
                                   style: titleRegular.copyWith(
-                                      fontSize: Dimensions.FONT_SIZE_LARGE,
+                                      fontSize: Dimensions.FONT_SIZE_SMALL,
                                       color:
                                           ColorResources.getReviewRattingColor(
                                               context)),
@@ -172,17 +172,21 @@ class _SellerScreenState extends State<SellerScreen> {
                                 isFlip: true);
                           } else if (widget.seller != null) {
                             Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (_) => ChatScreen(
-                                          id: widget.seller.seller.id,
-                                          name: widget.seller.seller.shop.name,
-                                        )));
+                              context,
+                              MaterialPageRoute(
+                                builder: (_) => ChatScreen(
+                                  id: widget.seller.seller.id,
+                                  name: widget.seller.seller.shop.name,
+                                ),
+                              ),
+                            );
                           }
                         },
-                        icon: Image.asset(Images.chat_image,
-                            color: ColorResources.SELLER_TXT,
-                            height: Dimensions.ICON_SIZE_DEFAULT),
+                        icon: Image.asset(
+                          Images.chat_image,
+                          color: ColorResources.SELLER_TXT,
+                          height: Dimensions.ICON_SIZE_DEFAULT,
+                        ),
                       ),
                     ]),
                   ]),
@@ -190,8 +194,9 @@ class _SellerScreenState extends State<SellerScreen> {
                 SizedBox(height: Dimensions.PADDING_SIZE_SMALL),
                 Padding(
                   padding: EdgeInsets.only(
-                      left: Dimensions.PADDING_SIZE_SMALL,
-                      right: Dimensions.PADDING_SIZE_EXTRA_EXTRA_SMALL),
+                    left: Dimensions.PADDING_SIZE_SMALL,
+                    right: Dimensions.PADDING_SIZE_EXTRA_EXTRA_SMALL,
+                  ),
                   child: SearchWidget(
                     hintText: 'Search product...',
                     onTextChanged: (String newText) =>
@@ -205,10 +210,11 @@ class _SellerScreenState extends State<SellerScreen> {
                 Padding(
                   padding: EdgeInsets.all(Dimensions.PADDING_SIZE_EXTRA_SMALL),
                   child: ProductView(
-                      isHomePage: false,
-                      productType: ProductType.SELLER_PRODUCT,
-                      scrollController: _scrollController,
-                      sellerId: widget.seller.seller.id.toString()),
+                    isHomePage: false,
+                    productType: ProductType.SELLER_PRODUCT,
+                    scrollController: _scrollController,
+                    sellerId: widget.seller.seller.id.toString(),
+                  ),
                 ),
               ],
             ),

@@ -107,7 +107,7 @@ class _DashBoardScreenState extends State<DashBoardScreen> {
             icon,
             color: index == _pageIndex
                 ? Theme.of(context).primaryColor
-                : Theme.of(context).textTheme.bodyText1.color.withOpacity(0.5),
+                : Theme.of(context).textTheme.bodyLarge.color.withOpacity(0.5),
             height: 25,
             width: 25,
           ),

@@ -158,8 +158,11 @@ class ProductProvider extends ChangeNotifier {
 
   void initSellerProductList(String sellerId, int offset, BuildContext context,
       {bool reload = false}) async {
-    _sellerProductList = [];
-    _firstLoading = true;
+    if (_firstLoading) {
+      _sellerProductList = [];
+      print("inside !_firstLoading");
+      _firstLoading = true;
+    }
     if (reload) {
       _offsetList = [];
       _sellerProductList = [];
@@ -170,7 +173,7 @@ class ProductProvider extends ChangeNotifier {
         await productRepo.getSellerProductList(sellerId, offset.toString());
     if (apiResponse.response != null &&
         apiResponse.response.statusCode == 200) {
-      _sellerProductList = [];
+      // _sellerProductList = [];
       _sellerProductList
           .addAll(ProductModel.fromJson(apiResponse.response.data).products);
       _sellerAllProductList

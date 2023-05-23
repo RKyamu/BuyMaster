@@ -13,15 +13,16 @@ class ProductView extends StatelessWidget {
   final ProductType productType;
   final ScrollController scrollController;
   final String sellerId;
-  ProductView(
-      {@required this.isHomePage,
-      @required this.productType,
-      this.scrollController,
-      this.sellerId});
+  ProductView({
+    @required this.isHomePage,
+    @required this.productType,
+    this.scrollController,
+    this.sellerId,
+  });
 
   @override
   Widget build(BuildContext context) {
-    print("seller product build");
+    print("inside product_view.dart build listing all products");
     int offset = 1;
     scrollController?.addListener(() {
       if (scrollController.position.maxScrollExtent ==
@@ -59,6 +60,7 @@ class ProductView extends StatelessWidget {
               .showBottomLoader();
 
           if (productType == ProductType.SELLER_PRODUCT) {
+            print("inside SELLER_PRODUCT");
             Provider.of<ProductProvider>(context, listen: false)
                 .initSellerProductList(sellerId, offset, context);
           } else {

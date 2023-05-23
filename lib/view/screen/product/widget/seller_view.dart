@@ -37,9 +37,12 @@ class SellerView extends StatelessWidget {
                       width: sellerIconSize,
                       height: sellerIconSize,
                       decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(sellerIconSize),
-                          border: Border.all(
-                              width: .5, color: Theme.of(context).hintColor)),
+                        borderRadius: BorderRadius.circular(sellerIconSize),
+                        border: Border.all(
+                          width: .5,
+                          color: Theme.of(context).hintColor,
+                        ),
+                      ),
                       child: ClipRRect(
                         borderRadius: BorderRadius.circular(sellerIconSize),
                         child: FadeInImage.assetNetwork(
@@ -67,10 +70,13 @@ class SellerView extends StatelessWidget {
                           Expanded(
                             child: InkWell(
                               onTap: () => Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (_) => SellerScreen(
-                                          seller: seller.sellerModel))),
+                                context,
+                                MaterialPageRoute(
+                                  builder: (_) => SellerScreen(
+                                    seller: seller.sellerModel,
+                                  ),
+                                ),
+                              ),
                               child: Column(
                                 mainAxisAlignment: MainAxisAlignment.start,
                                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -105,13 +111,14 @@ class SellerView extends StatelessWidget {
                                     isFlip: true);
                               } else if (seller.sellerModel != null) {
                                 Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (_) => ChatScreen(
-                                              id: seller.sellerModel.seller.id,
-                                              name: seller
-                                                  .sellerModel.seller.shop.name,
-                                            )));
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (_) => ChatScreen(
+                                      id: seller.sellerModel.seller.id,
+                                      name: seller.sellerModel.seller.shop.name,
+                                    ),
+                                  ),
+                                );
                               }
                             },
                             child: Image.asset(Images.chat_image,
@@ -128,8 +135,7 @@ class SellerView extends StatelessWidget {
                                     Text(
                                       '${seller.sellerModel.totalReview.toString()}',
                                       style: titilliumSemiBold.copyWith(
-                                          fontSize:
-                                              Dimensions.FONT_SIZE_EXTRA_LARGE),
+                                          fontSize: Dimensions.FONT_SIZE_SMALL),
                                     ),
                                     Text(
                                       getTranslated('reviews', context),
@@ -145,8 +151,7 @@ class SellerView extends StatelessWidget {
                                     Text(
                                       '${seller.sellerModel.totalProduct.toString()}',
                                       style: titilliumSemiBold.copyWith(
-                                          fontSize:
-                                              Dimensions.FONT_SIZE_EXTRA_LARGE),
+                                          fontSize: Dimensions.FONT_SIZE_SMALL),
                                     ),
                                     Text(
                                       getTranslated('products', context),
@@ -158,26 +163,30 @@ class SellerView extends StatelessWidget {
                                 Spacer(),
                                 InkWell(
                                   onTap: () => Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                          builder: (_) => SellerScreen(
-                                              seller: seller.sellerModel))),
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (_) => SellerScreen(
+                                        seller: seller.sellerModel,
+                                      ),
+                                    ),
+                                  ),
                                   child: Container(
                                     width: 100,
                                     height: 30,
                                     decoration: BoxDecoration(
-                                        color:
-                                            ColorResources.visitShop(context),
-                                        borderRadius: BorderRadius.circular(
-                                            Dimensions
-                                                .PADDING_SIZE_EXTRA_LARGE)),
+                                      color: ColorResources.visitShop(context),
+                                      borderRadius: BorderRadius.circular(
+                                        Dimensions.PADDING_SIZE_EXTRA_LARGE,
+                                      ),
+                                    ),
                                     child: Center(
-                                        child: Text(
-                                      getTranslated('visit_store', context),
-                                      style: titleRegular.copyWith(
-                                          color:
-                                              Theme.of(context).primaryColor),
-                                    )),
+                                      child: Text(
+                                        getTranslated('visit_store', context),
+                                        style: titleRegular.copyWith(
+                                          color: Theme.of(context).primaryColor,
+                                        ),
+                                      ),
+                                    ),
                                   ),
                                 )
                               ])

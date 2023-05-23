@@ -169,12 +169,14 @@ class _HomePageState extends State<HomePage> {
                                 return CircleAvatar(
                                   radius: 7,
                                   backgroundColor: ColorResources.RED,
-                                  child: Text(cart.cartList.length.toString(),
-                                      style: titilliumSemiBold.copyWith(
-                                        color: ColorResources.WHITE,
-                                        fontSize:
-                                            Dimensions.FONT_SIZE_EXTRA_SMALL,
-                                      )),
+                                  child: Text(
+                                    cart.cartList.length.toString(),
+                                    style: titilliumSemiBold.copyWith(
+                                      color: ColorResources.WHITE,
+                                      fontSize:
+                                          Dimensions.FONT_SIZE_EXTRA_SMALL,
+                                    ),
+                                  ),
                                 );
                               }),
                             ),
@@ -281,7 +283,8 @@ class _HomePageState extends State<HomePage> {
                               onTap: () => Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (_) => AllCategoryScreen()),
+                                  builder: (_) => AllCategoryScreen(),
+                                ),
                               ),
                             ),
                           ),

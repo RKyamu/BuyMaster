@@ -364,16 +364,17 @@ class _RefundResultBottomSheetState extends State<RefundResultBottomSheet> {
                                                         fontWeight:
                                                             FontWeight.bold)),
                                                 TextSpan(
-                                                    text: PriceConverter
-                                                        .convertPrice(
-                                                            context,
-                                                            refund
-                                                                .refundInfoModel
-                                                                .refund
-                                                                .refundAmount),
-                                                    style: TextStyle(
-                                                        fontWeight:
-                                                            FontWeight.w200)),
+                                                  text: PriceConverter
+                                                      .convertPrice(
+                                                          context,
+                                                          refund
+                                                              .refundInfoModel
+                                                              .refund
+                                                              .refundAmount),
+                                                  style: TextStyle(
+                                                    fontWeight: FontWeight.w200,
+                                                  ),
+                                                ),
                                               ],
                                             ),
                                           ),
@@ -386,20 +387,19 @@ class _RefundResultBottomSheetState extends State<RefundResultBottomSheet> {
                                                       .style,
                                               children: <TextSpan>[
                                                 TextSpan(
-                                                    text: getTranslated(
-                                                        'refund_status',
-                                                        context),
-                                                    style: TextStyle(
-                                                        fontWeight:
-                                                            FontWeight.bold)),
+                                                  text: getTranslated(
+                                                      'refund_status', context),
+                                                  style: TextStyle(
+                                                    fontWeight: FontWeight.bold,
+                                                  ),
+                                                ),
                                                 TextSpan(
-                                                    text: refund
-                                                        .refundResultModel
-                                                        .refundRequest[0]
-                                                        .status,
-                                                    style: TextStyle(
-                                                        fontWeight:
-                                                            FontWeight.w200)),
+                                                  text: refund.refundResultModel
+                                                      .refundRequest[0].status,
+                                                  style: TextStyle(
+                                                    fontWeight: FontWeight.w200,
+                                                  ),
+                                                ),
                                               ],
                                             ),
                                           ),
@@ -416,28 +416,31 @@ class _RefundResultBottomSheetState extends State<RefundResultBottomSheet> {
                                                         .style,
                                                     children: <TextSpan>[
                                                       TextSpan(
-                                                          text: getTranslated(
-                                                              'approved_note',
-                                                              context),
-                                                          style: TextStyle(
-                                                              fontWeight:
-                                                                  FontWeight
-                                                                      .bold)),
+                                                        text: getTranslated(
+                                                            'approved_note',
+                                                            context),
+                                                        style: TextStyle(
+                                                          fontWeight:
+                                                              FontWeight.bold,
+                                                        ),
+                                                      ),
                                                       TextSpan(
-                                                          text: ' : ',
-                                                          style: TextStyle(
-                                                              fontWeight:
-                                                                  FontWeight
-                                                                      .w200)),
+                                                        text: ' : ',
+                                                        style: TextStyle(
+                                                          fontWeight:
+                                                              FontWeight.w200,
+                                                        ),
+                                                      ),
                                                       TextSpan(
-                                                          text: refund
-                                                              .refundResultModel
-                                                              .refundRequest[0]
-                                                              .approvedNote,
-                                                          style: TextStyle(
-                                                              fontWeight:
-                                                                  FontWeight
-                                                                      .w200)),
+                                                        text: refund
+                                                            .refundResultModel
+                                                            .refundRequest[0]
+                                                            .approvedNote,
+                                                        style: TextStyle(
+                                                          fontWeight:
+                                                              FontWeight.w200,
+                                                        ),
+                                                      ),
                                                     ],
                                                   ),
                                                 )
@@ -455,28 +458,31 @@ class _RefundResultBottomSheetState extends State<RefundResultBottomSheet> {
                                                         .style,
                                                     children: <TextSpan>[
                                                       TextSpan(
-                                                          text: getTranslated(
-                                                              'rejected_note',
-                                                              context),
-                                                          style: TextStyle(
-                                                              fontWeight:
-                                                                  FontWeight
-                                                                      .bold)),
+                                                        text: getTranslated(
+                                                            'rejected_note',
+                                                            context),
+                                                        style: TextStyle(
+                                                          fontWeight:
+                                                              FontWeight.bold,
+                                                        ),
+                                                      ),
                                                       TextSpan(
-                                                          text: ' : ',
-                                                          style: TextStyle(
-                                                              fontWeight:
-                                                                  FontWeight
-                                                                      .w200)),
+                                                        text: ' : ',
+                                                        style: TextStyle(
+                                                          fontWeight:
+                                                              FontWeight.w200,
+                                                        ),
+                                                      ),
                                                       TextSpan(
-                                                          text: refund
-                                                              .refundResultModel
-                                                              .refundRequest[0]
-                                                              .rejectedNote,
-                                                          style: TextStyle(
-                                                              fontWeight:
-                                                                  FontWeight
-                                                                      .w200)),
+                                                        text: refund
+                                                            .refundResultModel
+                                                            .refundRequest[0]
+                                                            .rejectedNote,
+                                                        style: TextStyle(
+                                                          fontWeight:
+                                                              FontWeight.w200,
+                                                        ),
+                                                      ),
                                                     ],
                                                   ),
                                                 )
@@ -504,20 +510,21 @@ class _RefundResultBottomSheetState extends State<RefundResultBottomSheet> {
                                                       .style,
                                               children: <TextSpan>[
                                                 TextSpan(
-                                                    text: getTranslated(
-                                                        'refund_reason',
-                                                        context),
-                                                    style: TextStyle(
-                                                        fontWeight:
-                                                            FontWeight.w700)),
+                                                  text: getTranslated(
+                                                      'refund_reason', context),
+                                                  style: TextStyle(
+                                                    fontWeight: FontWeight.w700,
+                                                  ),
+                                                ),
                                                 TextSpan(
-                                                    text: refund
-                                                        .refundResultModel
-                                                        .refundRequest[0]
-                                                        .refundReason,
-                                                    style: TextStyle(
-                                                        fontWeight:
-                                                            FontWeight.w200)),
+                                                  text: refund
+                                                      .refundResultModel
+                                                      .refundRequest[0]
+                                                      .refundReason,
+                                                  style: TextStyle(
+                                                    fontWeight: FontWeight.w200,
+                                                  ),
+                                                ),
                                               ],
                                             ),
                                           ),

@@ -104,8 +104,12 @@ class _SignInWidgetState extends State<SignInWidget> {
               Navigator.pushAndRemoveUntil(
                   context,
                   MaterialPageRoute(
-                      builder: (_) => VerificationScreen(temporaryToken, '',
-                          _emailController.text.toString())),
+                    builder: (_) => VerificationScreen(
+                      temporaryToken,
+                      '',
+                      _emailController.text.toString(),
+                    ),
+                  ),
                   (route) => false);
             }
           });
@@ -115,7 +119,8 @@ class _SignInWidgetState extends State<SignInWidget> {
           Navigator.pushAndRemoveUntil(
               context,
               MaterialPageRoute(
-                  builder: (_) => MobileVerificationScreen(temporaryToken)),
+                builder: (_) => MobileVerificationScreen(temporaryToken),
+              ),
               (route) => false);
         }
       } else {
@@ -127,9 +132,12 @@ class _SignInWidgetState extends State<SignInWidget> {
             (route) => false);
       }
     } else {
-      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
           content: Text(errorMessage),
-          backgroundColor: Theme.of(context).primaryColor));
+          backgroundColor: Theme.of(context).primaryColor,
+        ),
+      );
     }
   }
 
@@ -147,24 +155,25 @@ class _SignInWidgetState extends State<SignInWidget> {
               EdgeInsets.symmetric(vertical: Dimensions.PADDING_SIZE_SMALL),
           children: [
             Container(
-                margin: EdgeInsets.only(bottom: Dimensions.MARGIN_SIZE_SMALL),
-                child: CustomTextField(
-                  hintText:
-                      getTranslated('ENTER_YOUR_EMAIL_or_mobile', context),
-                  focusNode: _emailNode,
-                  nextNode: _passNode,
-                  textInputType: TextInputType.emailAddress,
-                  controller: _emailController,
-                )),
+              margin: EdgeInsets.only(bottom: Dimensions.MARGIN_SIZE_SMALL),
+              child: CustomTextField(
+                hintText: getTranslated('ENTER_YOUR_EMAIL_or_mobile', context),
+                focusNode: _emailNode,
+                nextNode: _passNode,
+                textInputType: TextInputType.emailAddress,
+                controller: _emailController,
+              ),
+            ),
 
             Container(
-                margin: EdgeInsets.only(bottom: Dimensions.MARGIN_SIZE_DEFAULT),
-                child: CustomPasswordTextField(
-                  hintTxt: getTranslated('ENTER_YOUR_PASSWORD', context),
-                  textInputAction: TextInputAction.done,
-                  focusNode: _passNode,
-                  controller: _passwordController,
-                )),
+              margin: EdgeInsets.only(bottom: Dimensions.MARGIN_SIZE_DEFAULT),
+              child: CustomPasswordTextField(
+                hintTxt: getTranslated('ENTER_YOUR_PASSWORD', context),
+                textInputAction: TextInputAction.done,
+                focusNode: _passNode,
+                controller: _passwordController,
+              ),
+            ),
 
             Container(
               margin: EdgeInsets.only(right: Dimensions.MARGIN_SIZE_SMALL),
@@ -187,12 +196,15 @@ class _SignInWidgetState extends State<SignInWidget> {
                   ),
                   InkWell(
                     onTap: () => Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (_) => ForgetPasswordScreen())),
-                    child: Text(getTranslated('FORGET_PASSWORD', context),
-                        style: titilliumRegular.copyWith(
-                            color: ColorResources.getLightSkyBlue(context))),
+                      context,
+                      MaterialPageRoute(builder: (_) => ForgetPasswordScreen()),
+                    ),
+                    child: Text(
+                      getTranslated('FORGET_PASSWORD', context),
+                      style: titilliumRegular.copyWith(
+                        color: ColorResources.getLightSkyBlue(context),
+                      ),
+                    ),
                   ),
                 ],
               ),
@@ -210,47 +222,48 @@ class _SignInWidgetState extends State<SignInWidget> {
                     )
                   : CustomButton(
                       onTap: loginUser,
-                      buttonText: getTranslated('SIGN_IN', context)),
+                      buttonText: getTranslated('SIGN_IN', context),
+                    ),
             ),
             SizedBox(width: Dimensions.PADDING_SIZE_DEFAULT),
 
             // SocialLoginWidget(),
             // SizedBox(width: Dimensions.PADDING_SIZE_DEFAULT),
 
-            Center(
-                child: Text(getTranslated('OR', context),
-                    style: titilliumRegular.copyWith(
-                        fontSize: Dimensions.FONT_SIZE_DEFAULT))),
+            // Center(
+            //     child: Text(getTranslated('OR', context),
+            //         style: titilliumRegular.copyWith(
+            //             fontSize: Dimensions.FONT_SIZE_DEFAULT))),
 
-            GestureDetector(
-              onTap: () {
-                if (!Provider.of<AuthProvider>(context, listen: false)
-                    .isLoading) {
-                  Provider.of<CartProvider>(context, listen: false)
-                      .getCartData();
-                  Navigator.pushAndRemoveUntil(
-                      context,
-                      MaterialPageRoute(builder: (_) => DashBoardScreen()),
-                      (route) => false);
-                }
-              },
-              child: Container(
-                margin: EdgeInsets.only(
-                    left: Dimensions.MARGIN_SIZE_AUTH,
-                    right: Dimensions.MARGIN_SIZE_AUTH,
-                    top: Dimensions.MARGIN_SIZE_AUTH_SMALL),
-                width: double.infinity,
-                height: 40,
-                alignment: Alignment.center,
-                decoration: BoxDecoration(
-                  color: Colors.transparent,
-                  borderRadius: BorderRadius.circular(6),
-                ),
-                child: Text(getTranslated('CONTINUE_AS_GUEST', context),
-                    style: titleHeader.copyWith(
-                        color: ColorResources.getPrimary(context))),
-              ),
-            ),
+            // GestureDetector(
+            //   onTap: () {
+            //     if (!Provider.of<AuthProvider>(context, listen: false)
+            //         .isLoading) {
+            //       Provider.of<CartProvider>(context, listen: false)
+            //           .getCartData();
+            //       Navigator.pushAndRemoveUntil(
+            //           context,
+            //           MaterialPageRoute(builder: (_) => DashBoardScreen()),
+            //           (route) => false);
+            //     }
+            //   },
+            //   child: Container(
+            //     margin: EdgeInsets.only(
+            //         left: Dimensions.MARGIN_SIZE_AUTH,
+            //         right: Dimensions.MARGIN_SIZE_AUTH,
+            //         top: Dimensions.MARGIN_SIZE_AUTH_SMALL),
+            //     width: double.infinity,
+            //     height: 40,
+            //     alignment: Alignment.center,
+            //     decoration: BoxDecoration(
+            //       color: Colors.transparent,
+            //       borderRadius: BorderRadius.circular(6),
+            //     ),
+            //     child: Text(getTranslated('CONTINUE_AS_GUEST', context),
+            //         style: titleHeader.copyWith(
+            //             color: ColorResources.getPrimary(context))),
+            //   ),
+            // ),
           ],
         ),
       ),

@@ -163,9 +163,11 @@ class _SignUpWidgetState extends State<SignUpWidget> {
         _confirmPasswordController.clear();
       }
     } else {
-      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-          content: Text(errorMessage),
-          backgroundColor: Theme.of(context).primaryColor));
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+            content: Text(errorMessage),
+            backgroundColor: Theme.of(context).primaryColor),
+      );
     }
   }
 
@@ -195,8 +197,9 @@ class _SignUpWidgetState extends State<SignUpWidget> {
               // for first and last name
               Container(
                 margin: EdgeInsets.only(
-                    left: Dimensions.MARGIN_SIZE_DEFAULT,
-                    right: Dimensions.MARGIN_SIZE_DEFAULT),
+                  left: Dimensions.MARGIN_SIZE_DEFAULT,
+                  right: Dimensions.MARGIN_SIZE_DEFAULT,
+                ),
                 child: Row(
                   children: [
                     Expanded(
@@ -211,22 +214,24 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                     )),
                     SizedBox(width: Dimensions.PADDING_SIZE_DEFAULT),
                     Expanded(
-                        child: CustomTextField(
-                      hintText: getTranslated('LAST_NAME', context),
-                      focusNode: _lNameFocus,
-                      nextNode: _emailFocus,
-                      capitalization: TextCapitalization.words,
-                      controller: _lastNameController,
-                    )),
+                      child: CustomTextField(
+                        hintText: getTranslated('LAST_NAME', context),
+                        focusNode: _lNameFocus,
+                        nextNode: _emailFocus,
+                        capitalization: TextCapitalization.words,
+                        controller: _lastNameController,
+                      ),
+                    ),
                   ],
                 ),
               ),
 
               Container(
                 margin: EdgeInsets.only(
-                    left: Dimensions.MARGIN_SIZE_DEFAULT,
-                    right: Dimensions.MARGIN_SIZE_DEFAULT,
-                    top: Dimensions.MARGIN_SIZE_SMALL),
+                  left: Dimensions.MARGIN_SIZE_DEFAULT,
+                  right: Dimensions.MARGIN_SIZE_DEFAULT,
+                  top: Dimensions.MARGIN_SIZE_SMALL,
+                ),
                 child: CustomTextField(
                   hintText: getTranslated('ENTER_YOUR_EMAIL', context),
                   focusNode: _emailFocus,
@@ -238,9 +243,10 @@ class _SignUpWidgetState extends State<SignUpWidget> {
 
               Container(
                 margin: EdgeInsets.only(
-                    left: Dimensions.MARGIN_SIZE_DEFAULT,
-                    right: Dimensions.MARGIN_SIZE_DEFAULT,
-                    top: Dimensions.MARGIN_SIZE_SMALL),
+                  left: Dimensions.MARGIN_SIZE_DEFAULT,
+                  right: Dimensions.MARGIN_SIZE_DEFAULT,
+                  top: Dimensions.MARGIN_SIZE_SMALL,
+                ),
                 child: Row(children: [
                   CodePickerWidget(
                     onChanged: (CountryCode countryCode) {
@@ -255,23 +261,25 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                         color: Theme.of(context).textTheme.headline1.color),
                   ),
                   Expanded(
-                      child: CustomTextField(
-                    hintText: getTranslated('ENTER_MOBILE_NUMBER', context),
-                    controller: _phoneController,
-                    focusNode: _phoneFocus,
-                    nextNode: _passwordFocus,
-                    isPhoneNumber: true,
-                    textInputAction: TextInputAction.next,
-                    textInputType: TextInputType.phone,
-                  )),
+                    child: CustomTextField(
+                      hintText: getTranslated('ENTER_MOBILE_NUMBER', context),
+                      controller: _phoneController,
+                      focusNode: _phoneFocus,
+                      nextNode: _passwordFocus,
+                      isPhoneNumber: true,
+                      textInputAction: TextInputAction.next,
+                      textInputType: TextInputType.phone,
+                    ),
+                  ),
                 ]),
               ),
 
               Container(
                 margin: EdgeInsets.only(
-                    left: Dimensions.MARGIN_SIZE_DEFAULT,
-                    right: Dimensions.MARGIN_SIZE_DEFAULT,
-                    top: Dimensions.MARGIN_SIZE_SMALL),
+                  left: Dimensions.MARGIN_SIZE_DEFAULT,
+                  right: Dimensions.MARGIN_SIZE_DEFAULT,
+                  top: Dimensions.MARGIN_SIZE_SMALL,
+                ),
                 child: CustomPasswordTextField(
                   hintTxt: getTranslated('PASSWORD', context),
                   controller: _passwordController,
@@ -283,9 +291,10 @@ class _SignUpWidgetState extends State<SignUpWidget> {
 
               Container(
                 margin: EdgeInsets.only(
-                    left: Dimensions.MARGIN_SIZE_DEFAULT,
-                    right: Dimensions.MARGIN_SIZE_DEFAULT,
-                    top: Dimensions.MARGIN_SIZE_SMALL),
+                  left: Dimensions.MARGIN_SIZE_DEFAULT,
+                  right: Dimensions.MARGIN_SIZE_DEFAULT,
+                  top: Dimensions.MARGIN_SIZE_SMALL,
+                ),
                 child: CustomPasswordTextField(
                   hintTxt: getTranslated('RE_ENTER_PASSWORD', context),
                   controller: _confirmPasswordController,
@@ -299,10 +308,11 @@ class _SignUpWidgetState extends State<SignUpWidget> {
 
         Container(
           margin: EdgeInsets.only(
-              left: Dimensions.MARGIN_SIZE_LARGE,
-              right: Dimensions.MARGIN_SIZE_LARGE,
-              bottom: Dimensions.MARGIN_SIZE_LARGE,
-              top: Dimensions.MARGIN_SIZE_LARGE),
+            left: Dimensions.MARGIN_SIZE_LARGE,
+            right: Dimensions.MARGIN_SIZE_LARGE,
+            bottom: Dimensions.MARGIN_SIZE_LARGE,
+            top: Dimensions.MARGIN_SIZE_LARGE,
+          ),
           child: Provider.of<AuthProvider>(context).isLoading
               ? Center(
                   child: CircularProgressIndicator(
@@ -313,33 +323,43 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                 )
               : CustomButton(
                   onTap: addUser,
-                  buttonText: getTranslated('SIGN_UP', context)),
+                  buttonText: getTranslated('SIGN_UP', context),
+                ),
         ),
 
         // SocialLoginWidget(),
 
         // for skip for now
-        Provider.of<AuthProvider>(context).isLoading
-            ? SizedBox()
-            : Center(
-                child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  TextButton(
-                      onPressed: () => Navigator.pushReplacement(context,
-                          MaterialPageRoute(builder: (_) => DashBoardScreen())),
-                      child: Text(getTranslated('SKIP_FOR_NOW', context),
-                          style: titilliumRegular.copyWith(
-                              fontSize: Dimensions.FONT_SIZE_DEFAULT,
-                              color: ColorResources.getPrimary(context)))),
-                  Icon(
-                    Icons.arrow_forward,
-                    size: 15,
-                    color: Theme.of(context).primaryColor,
-                  )
-                ],
-              )),
+        // Provider.of<AuthProvider>(context).isLoading
+        //     ? SizedBox()
+        //     : Center(
+        //         child: Row(
+        //           mainAxisAlignment: MainAxisAlignment.center,
+        //           crossAxisAlignment: CrossAxisAlignment.center,
+        //           children: [
+        //             TextButton(
+        //               onPressed: () => Navigator.pushReplacement(
+        //                 context,
+        //                 MaterialPageRoute(
+        //                   builder: (_) => DashBoardScreen(),
+        //                 ),
+        //               ),
+        //               child: Text(
+        //                 getTranslated('SKIP_FOR_NOW', context),
+        //                 style: titilliumRegular.copyWith(
+        //                   fontSize: Dimensions.FONT_SIZE_DEFAULT,
+        //                   color: ColorResources.getPrimary(context),
+        //                 ),
+        //               ),
+        //             ),
+        //             Icon(
+        //               Icons.arrow_forward,
+        //               size: 15,
+        //               color: Theme.of(context).primaryColor,
+        //             )
+        //           ],
+        //         ),
+        //       ),
       ],
     );
   }

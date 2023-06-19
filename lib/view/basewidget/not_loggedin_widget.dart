@@ -15,47 +15,56 @@ class NotLoggedInWidget extends StatelessWidget {
     double _width = MediaQuery.of(context).size.width;
 
     return Padding(
-        padding: EdgeInsets.all(_height * 0.025),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Image.asset(Images.login, height: _height * 0.2, width: _width),
-            SizedBox(height: _height * 0.05),
-            Text(getTranslated('PLEASE_LOGIN_FIRST', context),
-                textAlign: TextAlign.center,
-                style: titilliumSemiBold.copyWith(fontSize: _height * 0.017)),
-            SizedBox(height: _height * 0.05),
-            Padding(
-              padding: EdgeInsets.symmetric(
-                  horizontal: Dimensions.PADDING_SIZE_LARGE),
-              child: Container(
-                width: MediaQuery.of(context).size.width / 2,
-                child: CustomButton(
-                  buttonText: getTranslated('LOGIN', context),
-                  onTap: () => Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => AuthScreen())),
+      padding: EdgeInsets.all(_height * 0.025),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Image.asset(Images.login, height: _height * 0.2, width: _width),
+          SizedBox(height: _height * 0.05),
+          Text(
+            getTranslated('PLEASE_LOGIN_FIRST', context),
+            textAlign: TextAlign.center,
+            style: titilliumSemiBold.copyWith(fontSize: _height * 0.017),
+          ),
+          SizedBox(height: _height * 0.05),
+          Padding(
+            padding:
+                EdgeInsets.symmetric(horizontal: Dimensions.PADDING_SIZE_LARGE),
+            child: Container(
+              width: MediaQuery.of(context).size.width / 2,
+              child: CustomButton(
+                buttonText: getTranslated('LOGIN', context),
+                onTap: () => Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => AuthScreen(),
+                  ),
                 ),
               ),
             ),
-            InkWell(
-              onTap: () {
-                Provider.of<AuthProvider>(context, listen: false)
-                    .updateSelectedIndex(1);
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => AuthScreen(initialPage: 1)));
-              },
-              child: Padding(
-                padding: EdgeInsets.symmetric(vertical: _height * 0.02),
-                child: Text(getTranslated('create_new_account', context),
-                    style: titilliumRegular.copyWith(
-                      color: Theme.of(context).primaryColor,
-                      fontSize: Dimensions.FONT_SIZE_SMALL,
-                    )),
-              ),
+          ),
+          InkWell(
+            onTap: () {
+              Provider.of<AuthProvider>(context, listen: false)
+                  .updateSelectedIndex(1);
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => AuthScreen(initialPage: 0),
+                ),
+              );
+            },
+            child: Padding(
+              padding: EdgeInsets.symmetric(vertical: _height * 0.02),
+              child: Text(getTranslated('create_new_account', context),
+                  style: titilliumRegular.copyWith(
+                    color: Theme.of(context).primaryColor,
+                    fontSize: Dimensions.FONT_SIZE_SMALL,
+                  )),
             ),
-          ],
-        ));
+          ),
+        ],
+      ),
+    );
   }
 }

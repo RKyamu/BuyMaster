@@ -24,7 +24,10 @@ import 'package:flutter_buymaster_user_app/view/screen/address/saved_billing_Add
 import 'package:flutter_buymaster_user_app/view/screen/checkout/widget/custom_check_box.dart';
 import 'package:flutter_buymaster_user_app/view/screen/dashboard/dashboard_screen.dart';
 import 'package:flutter_buymaster_user_app/view/screen/payment/payment_screen.dart';
+import 'package:instamojo/instamojo.dart';
 import 'package:provider/provider.dart';
+
+import '../payment/instamojo_screen.dart';
 
 class CheckoutScreen extends StatefulWidget {
   final List<CartModel> cartList;
@@ -60,6 +63,7 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
   bool _digitalPayment;
   bool _cod;
   bool _billingAddress;
+  String _paymentResponse = 'Unknown';
 
   ScrollController _scrollController = ScrollController();
 
@@ -92,6 +96,29 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
     );
   }
 
+  void startInstamojo() async {
+    dynamic result = await Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (ctx) => InstamojoScreen(
+          isLive: false,
+          body: CreateOrderBody(
+            buyerName: "John",
+            buyerEmail: "ceo@evilrattechnologies.com",
+            buyerPhone: "+91 7004491831",
+            amount: "300",
+            description: "Test Payment",
+          ),
+          orderCreationUrl: "https://sample-sdk-server.instamojo.com/order",
+        ),
+      ),
+    );
+
+    setState(() {
+      _paymentResponse = result.toString();
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     _order = widget.totalOrderAmount + widget.discount;
@@ -101,8 +128,9 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
       bottomNavigationBar: Container(
         height: 60,
         padding: EdgeInsets.symmetric(
-            horizontal: Dimensions.PADDING_SIZE_LARGE,
-            vertical: Dimensions.PADDING_SIZE_DEFAULT),
+          horizontal: Dimensions.PADDING_SIZE_LARGE,
+          vertical: Dimensions.PADDING_SIZE_DEFAULT,
+        ),
         decoration: BoxDecoration(
           color: ColorResources.getPrimary(context),
         ),
@@ -117,7 +145,7 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
                                       .addressIndex ==
                                   null &&
                               !widget.onlyDigital) {
-                                scrollToTop();
+                            scrollToTop();
                             showCustomSnackBar(
                                 getTranslated(
                                     'select_a_shipping_address', context),
@@ -127,7 +155,7 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
                                       .billingAddressIndex ==
                                   null &&
                               _billingAddress) {
-                                scrollToTop();
+                            scrollToTop();
                             showCustomSnackBar(
                                 getTranslated(
                                     'select_a_billing_address', context),
@@ -281,50 +309,49 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
                                           listen: false)
                                       .getUserInfo(context);
                               Navigator.pushReplacement(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (_) => PaymentScreen(
-                                            customerID: userID,
-                                            addressID: widget.onlyDigital
-                                                ? ''
-                                                : Provider.of<ProfileProvider>(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (_) => PaymentScreen(
+                                    customerID: userID,
+                                    addressID: widget.onlyDigital
+                                        ? ''
+                                        : Provider.of<ProfileProvider>(context,
+                                                listen: false)
+                                            .addressList[
+                                                Provider.of<OrderProvider>(
                                                         context,
                                                         listen: false)
-                                                    .addressList[Provider.of<
-                                                                OrderProvider>(
+                                                    .addressIndex]
+                                            .id
+                                            .toString(),
+                                    couponCode: couponCode,
+                                    couponCodeAmount: couponCodeAmount,
+                                    billingId: _billingAddress
+                                        ? Provider.of<ProfileProvider>(context,
+                                                listen: false)
+                                            .billingAddressList[
+                                                Provider.of<OrderProvider>(
+                                                        context,
+                                                        listen: false)
+                                                    .billingAddressIndex]
+                                            .id
+                                            .toString()
+                                        : widget.onlyDigital
+                                            ? ''
+                                            : Provider.of<ProfileProvider>(
+                                                    context,
+                                                    listen: false)
+                                                .addressList[
+                                                    Provider.of<OrderProvider>(
                                                             context,
                                                             listen: false)
                                                         .addressIndex]
-                                                    .id
-                                                    .toString(),
-                                            couponCode: couponCode,
-                                            couponCodeAmount: couponCodeAmount,
-                                            billingId: _billingAddress
-                                                ? Provider.of<ProfileProvider>(
-                                                        context,
-                                                        listen: false)
-                                                    .billingAddressList[Provider
-                                                            .of<OrderProvider>(
-                                                                context,
-                                                                listen: false)
-                                                        .billingAddressIndex]
-                                                    .id
-                                                    .toString()
-                                                : widget.onlyDigital
-                                                    ? ''
-                                                    : Provider.of<ProfileProvider>(
-                                                            context,
-                                                            listen: false)
-                                                        .addressList[Provider
-                                                                .of<OrderProvider>(
-                                                                    context,
-                                                                    listen:
-                                                                        false)
-                                                            .addressIndex]
-                                                        .id
-                                                        .toString(),
-                                            orderNote: orderNote,
-                                          )));
+                                                .id
+                                                .toString(),
+                                    orderNote: orderNote,
+                                  ),
+                                ),
+                              );
                             }
                           }
                         },
@@ -332,11 +359,13 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
                           padding: EdgeInsets.symmetric(
                               horizontal:
                                   MediaQuery.of(context).size.width / 2.9),
-                          child: Text(getTranslated('proceed', context),
-                              style: titilliumSemiBold.copyWith(
-                                fontSize: Dimensions.FONT_SIZE_EXTRA_LARGE,
-                                color: Theme.of(context).cardColor,
-                              )),
+                          child: Text(
+                            getTranslated('proceed', context),
+                            style: titilliumSemiBold.copyWith(
+                              fontSize: Dimensions.FONT_SIZE_EXTRA_LARGE,
+                              color: Theme.of(context).cardColor,
+                            ),
+                          ),
                         ),
                       ),
                     )
@@ -345,8 +374,10 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
                       width: 30,
                       alignment: Alignment.center,
                       child: CircularProgressIndicator(
-                          valueColor: AlwaysStoppedAnimation<Color>(
-                              Theme.of(context).highlightColor)),
+                        valueColor: AlwaysStoppedAnimation<Color>(
+                          Theme.of(context).highlightColor,
+                        ),
+                      ),
                     );
             },
           ),
@@ -892,20 +923,22 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
                                 _cod && !widget.onlyDigital
                                     ? Expanded(
                                         child: CustomCheckBox(
-                                            title: getTranslated(
-                                                'cash_on_delivery', context),
-                                            index: 0))
+                                          title: getTranslated(
+                                              'cash_on_delivery', context),
+                                          index: 0,
+                                        ),
+                                      )
                                     : SizedBox(),
                                 _digitalPayment
                                     ? Expanded(
                                         child: Container(
-                                            child: CustomCheckBox(
-                                                title: getTranslated(
-                                                    'digital_payment', context),
-                                                index:
-                                                    !_cod || widget.onlyDigital
-                                                        ? 0
-                                                        : 1)),
+                                          child: CustomCheckBox(
+                                              title: getTranslated(
+                                                  'digital_payment', context),
+                                              index: !_cod || widget.onlyDigital
+                                                  ? 0
+                                                  : 1),
+                                        ),
                                       )
                                     : SizedBox(),
                               ],

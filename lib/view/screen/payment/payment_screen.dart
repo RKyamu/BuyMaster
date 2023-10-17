@@ -8,7 +8,10 @@ import 'package:flutter_buymaster_user_app/view/basewidget/custom_app_bar.dart';
 import 'package:flutter_buymaster_user_app/view/basewidget/custom_loader.dart';
 import 'package:flutter_buymaster_user_app/view/basewidget/my_dialog.dart';
 import 'package:flutter_buymaster_user_app/view/screen/dashboard/dashboard_screen.dart';
+import 'package:instamojo/instamojo.dart';
 import 'package:webview_flutter/webview_flutter.dart';
+
+import 'instamojo_screen.dart';
 
 class PaymentScreen extends StatefulWidget {
   final String addressID;
@@ -37,6 +40,7 @@ class _PaymentScreenState extends State<PaymentScreen> {
   final Completer<WebViewController> _controller =
       Completer<WebViewController>();
   WebViewController controllerGlobal;
+  String _paymentResponse = 'Unknown';
 
   @override
   void initState() {
@@ -50,6 +54,29 @@ class _PaymentScreenState extends State<PaymentScreen> {
     if (Platform.isAndroid) WebView.platform = SurfaceAndroidWebView();
   }
 
+  void startInstamojo() async {
+    dynamic result = await Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (ctx) => InstamojoScreen(
+          isLive: false,
+          body: CreateOrderBody(
+            buyerName: "EvilRAT Technologies",
+            buyerEmail: "ceo@evilrattechnologies.com",
+            buyerPhone: "+91 7004491831",
+            amount: "300",
+            description: "Test Payment",
+          ),
+          orderCreationUrl: "https://sample-sdk-server.instamojo.com/order",
+        ),
+      ),
+    );
+
+    setState(() {
+      _paymentResponse = result.toString();
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return WillPopScope(
@@ -59,8 +86,9 @@ class _PaymentScreenState extends State<PaymentScreen> {
         body: Column(
           children: [
             CustomAppBar(
-                title: getTranslated('PAYMENT', context),
-                onBackPressed: () => _exitApp(context)),
+              title: getTranslated('PAYMENT', context),
+              onBackPressed: () => _exitApp(context),
+            ),
             Expanded(
               child: Stack(
                 children: [
@@ -98,25 +126,30 @@ class _PaymentScreenState extends State<PaymentScreen> {
                         if (_isSuccess) {
                           print('bangla vai===>$_isSuccess/$navi');
                           Navigator.of(context).pushAndRemoveUntil(
-                              MaterialPageRoute(
-                                  builder: (_) => DashBoardScreen()),
-                              (route) => false);
+                            MaterialPageRoute(
+                              builder: (_) => DashBoardScreen(),
+                            ),
+                            (route) => false,
+                          );
 
                           showAnimatedDialog(
-                              context,
-                              MyDialog(
-                                icon: Icons.done,
-                                title: getTranslated('payment_done', context),
-                                description: getTranslated(
-                                    'your_payment_successfully_done', context),
-                              ),
-                              dismissible: false,
-                              isFlip: true);
+                            context,
+                            MyDialog(
+                              icon: Icons.done,
+                              title: getTranslated('payment_done', context),
+                              description: getTranslated(
+                                  'your_payment_successfully_done', context),
+                            ),
+                            dismissible: false,
+                            isFlip: true,
+                          );
                         } else if (_isFailed) {
                           Navigator.of(context).pushAndRemoveUntil(
-                              MaterialPageRoute(
-                                  builder: (_) => DashBoardScreen()),
-                              (route) => false);
+                            MaterialPageRoute(
+                              builder: (_) => DashBoardScreen(),
+                            ),
+                            (route) => false,
+                          );
 
                           showAnimatedDialog(
                               context,
@@ -131,22 +164,25 @@ class _PaymentScreenState extends State<PaymentScreen> {
                               isFlip: true);
                         } else if (navi == '${AppConstants.BASE_URL}/cancel') {
                           Navigator.of(context).pushAndRemoveUntil(
-                              MaterialPageRoute(
-                                  builder: (_) => DashBoardScreen()),
-                              (route) => false);
+                            MaterialPageRoute(
+                              builder: (_) => DashBoardScreen(),
+                            ),
+                            (route) => false,
+                          );
 
                           showAnimatedDialog(
-                              context,
-                              MyDialog(
-                                icon: Icons.clear,
-                                title:
-                                    getTranslated('payment_cancelled', context),
-                                description: getTranslated(
-                                    'your_payment_cancelled', context),
-                                isFailed: true,
-                              ),
-                              dismissible: false,
-                              isFlip: true);
+                            context,
+                            MyDialog(
+                              icon: Icons.clear,
+                              title:
+                                  getTranslated('payment_cancelled', context),
+                              description: getTranslated(
+                                  'your_payment_cancelled', context),
+                              isFailed: true,
+                            ),
+                            dismissible: false,
+                            isFlip: true,
+                          );
                         }
                       }
 
@@ -162,9 +198,11 @@ class _PaymentScreenState extends State<PaymentScreen> {
                         });
                         if (_isSuccess) {
                           Navigator.of(context).pushAndRemoveUntil(
-                              MaterialPageRoute(
-                                  builder: (_) => DashBoardScreen()),
-                              (route) => false);
+                            MaterialPageRoute(
+                              builder: (_) => DashBoardScreen(),
+                            ),
+                            (route) => false,
+                          );
 
                           showAnimatedDialog(
                               context,
@@ -178,25 +216,29 @@ class _PaymentScreenState extends State<PaymentScreen> {
                               isFlip: true);
                         } else if (_isFailed) {
                           Navigator.of(context).pushAndRemoveUntil(
-                              MaterialPageRoute(
-                                  builder: (_) => DashBoardScreen()),
-                              (route) => false);
+                            MaterialPageRoute(
+                              builder: (_) => DashBoardScreen(),
+                            ),
+                            (route) => false,
+                          );
 
                           showAnimatedDialog(
-                              context,
-                              MyDialog(
-                                icon: Icons.clear,
-                                title: getTranslated('payment_failed', context),
-                                description: getTranslated(
-                                    'your_payment_failed', context),
-                                isFailed: true,
-                              ),
-                              dismissible: false,
-                              isFlip: true);
+                            context,
+                            MyDialog(
+                              icon: Icons.clear,
+                              title: getTranslated('payment_failed', context),
+                              description:
+                                  getTranslated('your_payment_failed', context),
+                              isFailed: true,
+                            ),
+                            dismissible: false,
+                            isFlip: true,
+                          );
                         } else if (url == '${AppConstants.BASE_URL}/cancel') {
                           Navigator.of(context).pushAndRemoveUntil(
                               MaterialPageRoute(
-                                  builder: (_) => DashBoardScreen()),
+                                builder: (_) => DashBoardScreen(),
+                              ),
                               (route) => false);
 
                           showAnimatedDialog(
@@ -224,7 +266,8 @@ class _PaymentScreenState extends State<PaymentScreen> {
                   _isLoading
                       ? Center(
                           child: CustomLoader(
-                              color: Theme.of(context).primaryColor),
+                            color: Theme.of(context).primaryColor,
+                          ),
                         )
                       : SizedBox.shrink(),
                 ],

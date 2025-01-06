@@ -6,7 +6,7 @@ publish_to: 'none'
 version: 1.0.1+2
 
 environment:
-  sdk: ">=2.7.0 <3.0.0"
+  sdk: ">=2.8.5 <3.0.0"
 
 dependencies:
   flutter:
@@ -29,7 +29,7 @@ dependencies:
   url_launcher: ^6.0.2
   image_picker: ^0.8.4+8
   webview_flutter: ^3.0.0
-  flutter_html: ^3.0.0-alpha.3
+  flutter_html: null
   share: ^2.0.1
   photo_view: ^0.14.0
   package_info: ^2.0.0
@@ -50,9 +50,9 @@ dependencies:
   flutter_typeahead: ^4.0.0
   marquee: ^2.2.1
   flutter_rating_bar: ^4.0.0
-  flutter_widget_from_html: ^0.8.5
-  flutter_widget_from_html_core: ^0.8.5+3
-  flutter_html_table: ^3.0.0-alpha.3
+  flutter_widget_from_html: null
+  flutter_widget_from_html_core: null
+  flutter_html_table: null
   fluttertoast: ^8.0.9
   permission_handler: ^10.0.0
   flutter_downloader: ^1.8.0+1
@@ -65,6 +65,8 @@ dependencies:
   page_transition: ^2.0.9
   cached_network_image: ^3.2.3
   instamojo: ^1.0.0+2
+  modal_bottom_sheet: ^2.1.2
+  firebase_auth: ^3.3.3
 
 
 

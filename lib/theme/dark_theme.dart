@@ -4,6 +4,7 @@ ThemeData dark = ThemeData(
   fontFamily: 'TitilliumWeb',
   primaryColor: Color(0xFF1B7FED),
   brightness: Brightness.dark,
+  bottomSheetTheme: BottomSheetThemeData(backgroundColor: Colors.transparent),
   highlightColor: Color(0xFF252525),
   hintColor: Color(0xFFc7c7c7),
   colorScheme : const ColorScheme.dark(primary: Color(0xFF64BDF9),

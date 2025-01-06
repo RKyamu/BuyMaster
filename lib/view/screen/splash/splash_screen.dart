@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'package:connectivity/connectivity.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_buymaster_user_app/utill/dimensions.dart';
 import '/localization/language_constrants.dart';
 import '/provider/auth_provider.dart';
 import '/provider/profile_provider.dart';
@@ -21,6 +22,7 @@ class SplashScreen extends StatefulWidget {
   var isProductLink = false;
   int productId;
   var slug;
+
   SplashScreen({@required this.isProductLink, this.productId, this.slug});
   @override
   _SplashScreenState createState() => _SplashScreenState();
@@ -134,6 +136,7 @@ class _SplashScreenState extends State<SplashScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       key: _globalKey,
+      backgroundColor: Theme.of(context).primaryColor,
       body: Provider.of<SplashProvider>(context).hasConnection
           ? Stack(
               clipBehavior: Clip.none,
@@ -141,9 +144,9 @@ class _SplashScreenState extends State<SplashScreen> {
                 Container(
                   width: MediaQuery.of(context).size.width,
                   height: MediaQuery.of(context).size.height,
-                  color: Provider.of<ThemeProvider>(context).darkTheme
-                      ? Colors.black
-                      : ColorResources.getPrimary(context),
+                  // color: Provider.of<ThemeProvider>(context).darkTheme
+                      // ? Colors.black
+                      // : ColorResources.getPrimary(context),
                   child: CustomPaint(
                     painter: SplashPainter(),
                   ),
@@ -152,12 +155,25 @@ class _SplashScreenState extends State<SplashScreen> {
                   child: Column(
                     mainAxisSize: MainAxisSize.min,
                     children: [
-                      Image.asset(
-                        Images.splashScreenLogo,
-                        height: 250.0,
-                        fit: BoxFit.scaleDown,
-                        width: 250.0,
+                      Hero(
+                        tag: 'logo',
+                        child: Image.asset(
+                          Images.splashScreenLogo,
+                          height: 260.0,
+                          fit: BoxFit.cover,
+                          width: 260.0,
+                        ),
                       ),
+                      SizedBox(
+                        height: Dimensions.PADDING_SIZE_EXTRA_LARGE,
+                      ),
+                      // Text(
+                      //   AppConstants.APP_NAME,
+                      //   style: titilliumBold.copyWith(
+                      //     fontSize: Dimensions.FONT_SIZE_WALLET,
+                      //     color: Colors.white,
+                      //   ),
+                      // ),
                     ],
                   ),
                 ),

@@ -50,12 +50,15 @@ class DefaultFirebaseOptions {
   }
 
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyDrYxY_OCJ1yBiNq4EmHn5GzjSxTZ42Tk8',
-    appId: '1:830792321643:android:b1690ab5df294303547f2e',
-    messagingSenderId: '830792321643',
-    projectId: 'multi-ecommerce-jellysoft',
-    databaseURL: 'https://multi-ecommerce-jellysoft-default-rtdb.firebaseio.com',
-    storageBucket: 'multi-ecommerce-jellysoft.appspot.com',
+    apiKey: "AIzaSyA4Ive3p0NmH8D63KrrPKUrcgV-FNWzR2c",
+    authDomain: "buy-master-multi-vendor.firebaseapp.com",
+    databaseURL:
+    "https://buy-master-multi-vendor-default-rtdb.firebaseio.com",
+    projectId: "buy-master-multi-vendor",
+    storageBucket: "buy-master-multi-vendor.appspot.com",
+    messagingSenderId: "890542118180",
+    appId: "1:890542118180:web:eab2652a3f5f8c812ccfb1",
+    measurementId: "G-K68394082S",
   );
 
   static const FirebaseOptions ios = FirebaseOptions(
@@ -69,3 +72,4 @@ class DefaultFirebaseOptions {
     iosBundleId: 'com.sixamtech.sixValley',
   );
 }
+

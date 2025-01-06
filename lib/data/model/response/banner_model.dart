@@ -12,31 +12,30 @@ class BannerModel {
   int resourceId;
   Product product;
 
-  BannerModel(
-      {this.id,
-      this.photo,
-      this.bannerType,
-      this.published,
-      this.createdAt,
-      this.updatedAt,
-      this.url,
-      this.resourceType,
-      this.resourceId,
-      this.product});
+  BannerModel({
+    this.id,
+    this.photo,
+    this.bannerType,
+    this.published,
+    this.createdAt,
+    this.updatedAt,
+    this.url,
+    this.resourceType,
+    this.resourceId,
+    this.product,
+  });
 
-  BannerModel.fromJson(Map<String, dynamic> json) {
-    id = json['id'];
-    photo = json['photo'];
-    bannerType = json['banner_type'];
-    published = json['published'];
-    createdAt = json['created_at'];
-    updatedAt = json['updated_at'];
-    url = json['url'];
-    resourceType = json['resource_type'];
-    resourceId = json['resource_id'];
-    product =
-        json['product'] != null ? new Product.fromJson(json['product']) : null;
-  }
+  BannerModel.fromJson(Map<String, dynamic> json)
+      : id = json['id'],
+        photo = json['photo'],
+        bannerType = json['banner_type'],
+        published = json['published'],
+        createdAt = json['created_at'],
+        updatedAt = json['updated_at'],
+        url = json['url'],
+        resourceType = json['resource_type'],
+        resourceId = json['resource_id'],
+        product = json['product'] != null ? Product.fromJson(json['product']) : null;
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();

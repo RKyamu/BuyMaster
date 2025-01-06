@@ -2,10 +2,14 @@ import 'package:flutter/material.dart';
 
 ThemeData light = ThemeData(
   fontFamily: 'TitilliumWeb',
-  primaryColor: Color.fromRGBO(44, 138, 239, 0.874),
+  primaryColor: Color(0xFF1B7FED),
+  bottomSheetTheme: BottomSheetThemeData(backgroundColor: Colors.transparent),
   brightness: Brightness.light,
   highlightColor: Colors.white,
   hintColor: Color(0xFF9E9E9E),
+  disabledColor:  Color(0xFF343A40),
+  canvasColor: Color(0xFFFCFCFC),
+  errorColor: Color(0xFFFF5A5A),
   colorScheme: const ColorScheme.light(
     primary: Color(0xFF0079E3),
     secondary: Color(0xFF004C8E),

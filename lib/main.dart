@@ -36,7 +36,7 @@ import 'provider/splash_provider.dart';
 import 'provider/support_ticket_provider.dart';
 import 'provider/theme_provider.dart';
 import 'provider/wishlist_provider.dart';
-import 'theme/dark_theme.dart';
+// import 'theme/dark_theme.dart';
 import 'theme/light_theme.dart';
 import 'utill/app_constants.dart';
 import 'view/screen/splash/splash_screen.dart';
@@ -55,7 +55,7 @@ import 'package:onesignal_flutter/onesignal_flutter.dart';
 import 'package:uni_links/uni_links.dart';
 
 final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
-    FlutterLocalNotificationsPlugin();
+FlutterLocalNotificationsPlugin();
 
 Future<void> main() async {
   HttpOverrides.global = new MyHttpOverrides();
@@ -67,7 +67,7 @@ Future<void> main() async {
         apiKey: "AIzaSyA4Ive3p0NmH8D63KrrPKUrcgV-FNWzR2c",
         authDomain: "buy-master-multi-vendor.firebaseapp.com",
         databaseURL:
-            "https://buy-master-multi-vendor-default-rtdb.firebaseio.com",
+        "https://buy-master-multi-vendor-default-rtdb.firebaseio.com",
         projectId: "buy-master-multi-vendor",
         storageBucket: "buy-master-multi-vendor.appspot.com",
         messagingSenderId: "890542118180",
@@ -79,7 +79,6 @@ Future<void> main() async {
 
   //Remove this method to stop OneSignal Debugging
   OneSignal.shared.setLogLevel(OSLogLevel.verbose, OSLogLevel.none);
-
   OneSignal.shared.setAppId("c5fabebb-0e25-49e3-9438-4f1ffcfb42c5");
 
   // The promptForPushNotificationsWithUserResponse function will show the iOS or Android push notification prompt. We recommend removing the following code and instead using an In-App Message to prompt for notification permission
@@ -114,30 +113,30 @@ Future<void> main() async {
   });
 
   OneSignal.shared.setEmailSubscriptionObserver(
-      (OSEmailSubscriptionStateChanges emailChanges) {
-    // Will be called whenever then user's email subscription changes
-    // (ie. OneSignal.setEmail(email) is called and the user gets registered
-  });
+          (OSEmailSubscriptionStateChanges emailChanges) {
+        // Will be called whenever then user's email subscription changes
+        // (ie. OneSignal.setEmail(email) is called and the user gets registered
+      });
 
   await Firebase.initializeApp(
-      // options: DefaultFirebaseOptions.currentPlatform,
-      );
+    // options: DefaultFirebaseOptions.currentPlatform,
+  );
   if (!kIsWeb && !FlutterDownloader.initialized) {
     await FlutterDownloader.initialize(debug: true, ignoreSsl: true);
   }
   await di.init();
   final NotificationAppLaunchDetails notificationAppLaunchDetails =
-      await flutterLocalNotificationsPlugin.getNotificationAppLaunchDetails();
+  await flutterLocalNotificationsPlugin.getNotificationAppLaunchDetails();
   int _orderID;
 
   if (notificationAppLaunchDetails?.didNotificationLaunchApp ?? false) {
     _orderID = (notificationAppLaunchDetails.payload != null &&
-            notificationAppLaunchDetails.payload.isNotEmpty)
+        notificationAppLaunchDetails.payload.isNotEmpty)
         ? int.parse(notificationAppLaunchDetails.payload)
         : null;
   }
   final RemoteMessage remoteMessage =
-      await FirebaseMessaging.instance.getInitialMessage();
+  await FirebaseMessaging.instance.getInitialMessage();
   if (remoteMessage != null) {
     _orderID = remoteMessage.notification.titleLocKey != null
         ? int.parse(remoteMessage.notification.titleLocKey)
@@ -193,9 +192,9 @@ void customRunApp(orderId) {
         ChangeNotifierProvider(
             create: (context) => di.sl<WalletTransactionProvider>()),
       ],
-      child: MyApp(
-        orderId: orderId,
-      ),
+      // child: MyApp(
+      //   orderId: orderId,
+      // ),
     ),
   );
 }
@@ -208,7 +207,8 @@ void initUniLinks() async {
   handleDeepLink(initialLink);
 
   // Listen for incoming links
-  getLinksStream().listen((String link) {
+  linkStream.listen((String link)
+  {
     // Handle the incoming link
     handleDeepLink(link);
   });
@@ -242,7 +242,7 @@ class MyApp extends StatelessWidget {
 
   void initOneSignal(BuildContext context) {
     OneSignal.shared.setNotificationWillShowInForegroundHandler(
-      (OSNotificationReceivedEvent event) {
+          (OSNotificationReceivedEvent event) {
         // Will be called whenever a notification is received in foreground
         // Display Notification, pass null param for not displaying the notification
         print("notification - received");
@@ -281,15 +281,15 @@ class MyApp extends StatelessWidget {
       supportedLocales: _locals,
       home: orderId == null
           ? SplashScreen(
-              isProductLink: isFromProductLink,
-              productId: productId,
-              slug: slug,
-            )
+        isProductLink: isFromProductLink,
+        productId: productId,
+        slug: slug,
+      )
           : OrderDetailsScreen(
-              orderId: orderId,
-              orderType: 'default_type',
-              isNotification: true,
-            ),
+        orderId: orderId,
+        orderType: 'default_type',
+        isNotification: true,
+      ),
     );
   }
 }
@@ -302,3 +302,5 @@ class MyHttpOverrides extends HttpOverrides {
           (X509Certificate cert, String host, int port) => true;
   }
 }
+
+
